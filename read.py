@@ -36,19 +36,18 @@ curWrite= dbWrite.cursor()
 
 # i=1
 file=open("nounPhrases.sql","a")
-for i in xrange(1,100000):
-     curRead.execute("SELECT * FROM resource_content limit "+str(i)+", "+str(i+10))
-     for row in curRead.fetchall():
-
-         try:
-            blob = TextBlob(unicodedata.normalize('NFKD', unicode(row[1], "utf-8")).encode('ascii', 'ignore'))
-            value=len(blob.noun_phrases)
-         except(UnicodeDecodeError):
-             print row[0]
-             print row[1]
-             value=0
-         #curWrite.execute\
-         file.write("INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (2, "+str(row[0])+", "+str(value)+" );\n")
+curRead.execute("SELECT * FROM resource_content")
+for row in curRead.fetchall():
+    text= unicode(row[1],"utf-8",errors='ignore')
+    try:
+        blob = TextBlob(text)
+        value=len(blob.noun_phrases)
+    except(UnicodeDecodeError):
+         print "not read at id: "+str(row[0])
+         #print row[1]
+         value=0
+    #curWrite.execute\
+    file.write("INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (3, "+str(row[0])+", "+str(value)+" );\n")
 
 file.close()
 # curWrite.execute("SELECT * FROM FEATURES;")

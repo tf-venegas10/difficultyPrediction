@@ -1,7 +1,6 @@
 import MySQLdb
 from textblob import TextBlob
 import sys
-import unicodedata
 
 reload(sys)
 sys.setdefaultencoding('utf8')

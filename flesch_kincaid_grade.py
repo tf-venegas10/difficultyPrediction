@@ -1,3 +1,4 @@
+
 from textstat.textstat import textstat
 import MySQLdb
 import sys
@@ -10,18 +11,18 @@ db = MySQLdb.connect(host="qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws
                      db="uzzonr2rx4qx8zu4")
 
 curRead = db.cursor()
-file=open("Words_Count2.sql","a")
+file=open("flesch_kincaid_grade.sql","a")
 curRead.execute("SELECT * FROM resource_content")
 for row in curRead.fetchall():
     text= unicode(row[1],"utf-8",errors='ignore')
     try:
-        value=textstat.lexicon_count(text)
+        value=textstat.flesch_kincaid_grade(text)
     except(UnicodeDecodeError):
          print "not read at id: "+str(row[0])
          #print row[1]
          value=0
     #curWrite.execute\
-    file.write("INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (1, "+str(row[0])+", "+str(value)+" );\n")
+    file.write("INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (7, "+str(row[0])+", "+str(value)+" );\n")
 
 file.close()
 

@@ -17,14 +17,16 @@ while cap.isOpened():
     ret, frame = cap.read()
     if ret:
         try:
-            cv2.imshow('frame', frame)
+            #cv2.imshow('frame', frame)
             cv2.imwrite(img_path, frame)
             img = Image.open(img_path)
             #print(img)
-            #print(image_to_string(img))
-            print(image_to_string(img, lang='eng'))
+            print(image_to_string(img))
+            #print(image_to_string(img, lang='eng'))
         except FileNotFoundError:
             print("FILE NOT FOUND")
         #time.sleep(5)
+    else:
+        break
 cap.release()
 cv2.destroyAllWindows()

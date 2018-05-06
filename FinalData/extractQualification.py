@@ -7,7 +7,7 @@ from __future__ import division
 #write.close()
 import json
 write=open("Qualification.sql","a")
-read=open("evaluations22-03-2018.json","r")
+read=open("evaluations27-04-2018.json","r")
 import MySQLdb
 
 
@@ -34,6 +34,9 @@ users=json.loads(text)
 
 for user in users:
     for eval in user['evaluations']:
+        if int(eval['resource']['evaluation'][0]['answer']['value'])<1 or int(eval['resource']['evaluation'][0]['answer']['value'])>5 :
+            print(int(eval['resource']['evaluation'][0]['answer']['value']))
+
         videosNumber[eval['resource']['id']]+=1
         videosQual[eval['resource']['id']]= (videosQual[eval['resource']['id']]+ int(eval['resource']['evaluation'][0]['answer']['value']))/videosNumber[eval['resource']['id']]
 print("json processing done")

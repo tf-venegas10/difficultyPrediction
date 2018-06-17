@@ -1,12 +1,11 @@
 import MySQLdb
 import os
 
-dbcomplete = MySQLdb.connect(host="qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-                             # your host, usually localhost
-                             user="znrmxn5ahxiedok5",  # your username
-                             passwd="r8lkor9pav5ag5uz",  # your password
-                             # port="3306",
-                             db="uzzonr2rx4qx8zu4")
+dbcomplete = MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",  # your host, usually localhost
+                     user="gh7u6wguchfrkxo1",  # your username
+                     passwd="lqgvsrxvaeyb8uql",  # your password
+                     # port="3306",
+                     db="n501u8qclhvj0mdv")
 
 curcomplete = dbcomplete.cursor()
 

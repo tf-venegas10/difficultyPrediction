@@ -19,7 +19,7 @@ for trans in transcript:
         # print row[1]
         value = 0
     file.write(
-        "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (10, " + str(trans['id']) + ", " + str(
+        "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (11, " + str(trans['id']) + ", " + str(
             value) + " );\n")
 
 file.close()

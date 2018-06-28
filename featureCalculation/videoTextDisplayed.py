@@ -6,6 +6,7 @@ import jellyfish
 import sys
 import json
 import MySQLdb
+import re
 
 dbcomplete = MySQLdb.connect(host="qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
                              # your host, usually localhost
@@ -28,8 +29,9 @@ ids = {}
 curcomplete.execute("SELECT * FROM learning_resources;")
 for row in curcomplete.fetchall():
     path = row[2].replace(
-        "/Users/rubenmanrique/Dropbox/DoctoradoAndes/Investigacion/Course Sequences Dataset/CourseraTexto/", "")
-    name = path.split(".")[0] + ".mp4"
+        "/Users/rubenmanrique/Dropbox/DoctoradoAndes/Investigacion/Course Sequences Dataset/CourseraTexto/",
+        "E:/Coursera/").replace("/Users/rubenmanrique/Downloads/CourseraTexto/", "E:/Coursera/")
+    name = re.sub(r'\.((t(x(t)?)?)|(e(n)?)|(s(r(t)?)?))(\.(t(x(t)?)?)?)?', '.mp4', path)
     ids[str(row[0])] = name
 
 dbcomplete.close()
@@ -40,7 +42,7 @@ for row in cur.fetchall():
     if str(row[0]) in ids:
         vids[ids[str(row[0])]] = row[0]
 
-print(vids)
+print(len(vids))
 db.close()
 
 # sys.setdefaultencoding() does not exist, here!
@@ -53,61 +55,65 @@ def similitude(val1, val2):
 
 
 ospath = os.path.dirname(__file__)
-ospath = ospath.replace("\\featureCalculation", "")
-rootdir = "E:\Coursera"
-export = open(ospath + '\InitialData\\video_caption_text.json', 'w')
+ospath = ospath.replace("/featureCalculation", "")
+rootdir = "E:/Coursera"
+export = open(ospath + '/InitialData/video_caption_text.json', 'w')
 img_path = (ospath + "/InitialData/image.jpg")  # .replace("/", "\\")
 texts = []
+processed = 0
 
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:
         vid_path = os.path.join(subdir, file)
-        print(vid_path)
         # vid_path = (ospath + "/InitialData/01_how-can-i-succeed-in-this-course.mp4")  # .replace("/", "\\")
-
         # print(img_path)
         # print(vid_path)
         if file.endswith(".mp4"):
             route = os.path.join(subdir, file)
-            name = route.replace("E:\Coursera\\", "").replace("\\", "/")
+            name = route.replace("\\", "/")
             print(name)
-            if name in vids:
-                text = [""]
-                cap = cv2.VideoCapture(vid_path)
-                interval = 120
-                counti = 0
+            for key in vids.keys():
+                #if not key.endswith(".mp4"):
+                    #print("THIS IS KEY: " + key)
+                if name.startswith(key):
+                    text = [""]
+                    cap = cv2.VideoCapture(vid_path)
+                    interval = 120
+                    counti = 0
 
-                while cap.isOpened():
-                    ret, frame = cap.read()
-                    if ret:
-                        if counti % interval == 0:
-                            try:
-                                # cv2.imshow('frame', frame)
-                                cv2.imwrite(img_path, frame)
-                                img = Image.open(img_path)
-                                # print(img)
-                                frame_text = image_to_string(img)
-                                # print(frame_text)
-                                comp_text = text.pop()
-                                if not similitude(frame_text, comp_text) and frame_text != "":
-                                    text.append(comp_text)
-                                    text.append(frame_text)
-                                elif similitude(frame_text, comp_text) and frame_text != "":
-                                    text.append(frame_text)
-                                else:
-                                    text.append(comp_text)
-                                # print(image_to_string(img, lang='eng'))
-                            except OSError:
-                                print("FILE NOT FOUND")
-                            # time.sleep(5)
-                        counti = counti + 1
-                    else:
-                        # print(counti)
-                        break
-                cap.release()
-                cv2.destroyAllWindows()
-                # print(text)
-                texts.append({'id': vids[name], 'path': name, 'text': " ".join(text)})
+                    while cap.isOpened():
+                        ret, frame = cap.read()
+                        if ret:
+                            if counti % interval == 0:
+                                try:
+                                    # cv2.imshow('frame', frame)
+                                    cv2.imwrite(img_path, frame)
+                                    img = Image.open(img_path)
+                                    # print(img)
+                                    frame_text = image_to_string(img)
+                                    # print(frame_text)
+                                    comp_text = text.pop()
+                                    if not similitude(frame_text, comp_text) and frame_text != "":
+                                        text.append(comp_text)
+                                        text.append(frame_text)
+                                    elif similitude(frame_text, comp_text) and frame_text != "":
+                                        text.append(frame_text)
+                                    else:
+                                        text.append(comp_text)
+                                    # print(image_to_string(img, lang='eng'))
+                                except OSError:
+                                    print("FILE NOT FOUND")
+                                # time.sleep(5)
+                            counti = counti + 1
+                        else:
+                            # print(counti)
+                            break
+                    processed = processed + 1
+                    print("Processed: " + str(processed))
+                    cap.release()
+                    cv2.destroyAllWindows()
+                    # print(text)
+                    texts.append({'id': vids[key], 'path': name, 'text': " ".join(text)})
 conversion = json.dumps(texts, ensure_ascii=False)
 export.write(conversion)
 export.close()

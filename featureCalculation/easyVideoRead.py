@@ -14,13 +14,17 @@ for trans in transcript:
     print(text)
     try:
         value = textstat.flesch_reading_ease(text)
+        file.write(
+            "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (11, " + str(trans['id']) + ", " + str(
+                value) + " );\n")
     except(UnicodeDecodeError):
         print "not read at id: " + str(trans['id'])
         # print row[1]
         value = 0
-    file.write(
-        "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (11, " + str(trans['id']) + ", " + str(
-            value) + " );\n")
+    except(TypeError):
+        file.write(
+            "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (11, " + str(trans['id']) + ", " + str(
+                0) + " );\n")
 
 file.close()
 transcriptFile.close()

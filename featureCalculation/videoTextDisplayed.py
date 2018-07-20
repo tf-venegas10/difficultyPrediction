@@ -7,6 +7,23 @@ import sys
 import json
 import MySQLdb
 import re
+import subprocess
+import math
+
+
+def getVideoDurationSecs(path_to_video):
+    result = subprocess.Popen(["C:/Users/juanm/Downloads/ffmpeg/bin/ffprobe.exe", path_to_video],
+                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    time = ([x for x in result.stdout.readlines() if "Duration" in x])[0].split(",")[0].strip().replace("Duration: ",
+                                                                                                        "").split(":")
+    print(time)
+    mult = 3600
+    duration = 0
+    for i in range(3):
+        duration += int(float(time[i]))*mult
+        mult /= 60
+    return duration
+
 
 dbcomplete = MySQLdb.connect(host="qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
                              # your host, usually localhost
@@ -73,13 +90,17 @@ for subdir, dirs, files in os.walk(rootdir):
             name = route.replace("\\", "/")
             print(name)
             for key in vids.keys():
-                #if not key.endswith(".mp4"):
-                    #print("THIS IS KEY: " + key)
+                # if not key.endswith(".mp4"):
+                # print("THIS IS KEY: " + key)
                 if name.startswith(key):
                     text = [""]
                     cap = cv2.VideoCapture(vid_path)
-                    interval = 120
                     counti = 0
+                    duration = getVideoDurationSecs(vid_path)
+                    frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+                    print("Duration [s]: "+str(duration))
+                    interval = int(math.floor((frame_count/duration)*2))
+                    print("Interval: "+str(interval))
 
                     while cap.isOpened():
                         ret, frame = cap.read()

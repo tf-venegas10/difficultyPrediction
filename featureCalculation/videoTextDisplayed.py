@@ -99,7 +99,7 @@ for subdir, dirs, files in os.walk(rootdir):
                     duration = getVideoDurationSecs(vid_path)
                     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
                     print("Duration [s]: "+str(duration))
-                    interval = int(math.floor((frame_count/duration)*5))
+                    interval = int(math.floor((frame_count/duration)*1))
                     print("Interval: "+str(interval))
 
                     while cap.isOpened():

@@ -20,9 +20,13 @@ def getVideoDurationSecs(path_to_video):
     mult = 3600
     duration = 0
     for i in range(3):
-        duration += int(float(time[i]))*mult
+        duration += int(float(time[i])) * mult
         mult /= 60
     return duration
+
+
+def similitude(val1, val2):
+    return jellyfish.jaro_distance(unicode(val1), unicode(val2)) > 0.60
 
 
 dbcomplete = MySQLdb.connect(host="qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
@@ -66,11 +70,6 @@ db.close()
 reload(sys)  # Reload does the trick!
 sys.setdefaultencoding('UTF8')
 
-
-def similitude(val1, val2):
-    return jellyfish.jaro_distance(unicode(val1), unicode(val2)) > 0.60
-
-
 ospath = os.path.dirname(__file__)
 ospath = ospath.replace("/featureCalculation", "")
 rootdir = "E:/Coursera"
@@ -98,9 +97,9 @@ for subdir, dirs, files in os.walk(rootdir):
                     counti = 0
                     duration = getVideoDurationSecs(vid_path)
                     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-                    print("Duration [s]: "+str(duration))
-                    interval = int(math.floor((frame_count/duration)*1))
-                    print("Interval: "+str(interval))
+                    print("Duration [s]: " + str(duration))
+                    interval = int(math.floor((frame_count / duration) * 1))
+                    print("Interval: " + str(interval))
 
                     while cap.isOpened():
                         ret, frame = cap.read()

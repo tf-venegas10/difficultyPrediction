@@ -63,7 +63,7 @@ for row in cur.fetchall():
     if str(row[0]) in ids:
         vids[ids[str(row[0])]] = row[0]
 
-print(len(vids))
+vids_amount = len(vids)
 db.close()
 
 # sys.setdefaultencoding() does not exist, here!
@@ -129,7 +129,7 @@ for subdir, dirs, files in os.walk(rootdir):
                             # print(counti)
                             break
                     processed = processed + 1
-                    print("Processed: " + str(processed))
+                    print("Processed: " + str(processed)+"/"+str(vids_amount))
                     cap.release()
                     cv2.destroyAllWindows()
                     # print(text)

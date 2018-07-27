@@ -29,3 +29,4 @@ for row in cur.fetchall():
 for key in features.keys():
     print(key)
     print(sy.spearmanr(features[key],features['qualification']))
+    print(sy.pearsonr(features[key],features['qualification']))

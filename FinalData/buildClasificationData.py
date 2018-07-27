@@ -1,6 +1,6 @@
 import MySQLdb
 import json
-
+import random
 
 db= MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",    # your host, usually localhost
                      user="gh7u6wguchfrkxo1",         # your username
@@ -8,15 +8,16 @@ db= MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.
                     # port="3306",
                      db="n501u8qclhvj0mdv")
 cur = db.cursor()
-file=open("clasificationData.json","w")
+file=open("classificationData.json","w")
+testSet=open("testSetClassification.json","w")
 cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION<>0");
 videos={}
 for row in cur.fetchall():
     videos[row[0]]={}
     videos[row[0]]["VIDEOID"] = row[0]
-    if(float(row[1])<2.333):
-        videos[row[0]]["qualification"]="hard"
-    elif(float(row[1])<3.666):
+    if(float(row[1])<3):
+        videos[row[0]]["qualification"] = "difficult"
+    elif (float(row[1]) < 4):
         videos[row[0]]["qualification"] = "intermediate"
     else:
         videos[row[0]]["qualification"] = "easy"
@@ -31,10 +32,20 @@ for row in cur.fetchall():
     videos[row[0]][row[1]]=row[2]
 
 results=[]
+test=[]
+i=1
 for key in videos.keys():
-    results.append(videos[key])
+    print(i)
+    i+=1
+    if(random.random()<0.3):
+        test.append(videos[key])
+    else:
+        results.append(videos[key])
 
 object=json.dumps(results)
 file.write(object)
+object=json.dumps(test)
+testSet.write(object)
 file.close()
+testSet.close()
 cur.close()

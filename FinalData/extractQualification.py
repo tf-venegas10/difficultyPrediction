@@ -7,16 +7,10 @@ from __future__ import division
 #write.close()
 import json
 write=open("Qualification.sql","a")
-read=open("evaluations27-04-2018.json","r")
-import MySQLdb
+read=open("./../initialData/evaluations.json","r")
+read2=open("./../initialData/evaluations_phase2.json","r")
 
 
-db= MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",    # your host, usually localhost
-                     user="gh7u6wguchfrkxo1",         # your username
-                     passwd="lqgvsrxvaeyb8uql", # your password
-                    # port="3306",
-                     db="n501u8qclhvj0mdv")
-cur = db.cursor()
 videosQual={}
 videosNumber={}
 #cur.execute("SELECT * FROM VIDEO_QUALIFICATION;");
@@ -28,8 +22,18 @@ for i in xrange(1,5841):
     videosQual[i] = 0
     videosNumber[i]= 0
 
-print("db read completed")
+
 text=read.read()
+users=json.loads(text)
+
+for user in users:
+    for eval in user['evaluations']:
+        if int(eval['resource']['evaluation'][0]['answer']['value'])<1 or int(eval['resource']['evaluation'][0]['answer']['value'])>5 :
+            print(int(eval['resource']['evaluation'][0]['answer']['value']))
+
+        videosNumber[eval['resource']['id']]+=1
+        videosQual[eval['resource']['id']]= (videosQual[eval['resource']['id']]+ int(eval['resource']['evaluation'][0]['answer']['value']))/videosNumber[eval['resource']['id']]
+text=read2.read()
 users=json.loads(text)
 
 for user in users:

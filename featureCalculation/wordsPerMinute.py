@@ -2,7 +2,6 @@ import MySQLdb
 import re
 import sys
 import os
-import math
 from textstat.textstat import textstat
 
 
@@ -110,14 +109,14 @@ for subdir, dirs, files in os.walk(rootdir):
                             print("Adjusting format")
                         line = srt.readline()
                     if not time == 0:
-                        average = math.ceil(words / time)
+                        average = float(words) / float(time)
                     if average < 0:
-                        average *= -1
+                        average *= -1.0
                     print("Average: " + str(average))
                     srt.close()
 
                     output.write(
-                        "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (21, " + str(
+                        "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (31, " + str(
                             vids[key]) + ", " + str(average) + " );\n")
                     processed += 1
                     print("Processed: " + str(processed) + "/" + vid_amount)
@@ -152,14 +151,14 @@ for subdir, dirs, files in os.walk(rootdir):
                             print("Adjusting format")
                         line = srt.readline()
                     if not time == 0:
-                        average = math.ceil(words / time)
+                        average = float(words) / float(time)
                     if average < 0:
-                        average *= -1
+                        average *= -1.0
                     print("Average: " + str(average))
                     srt.close()
 
                     output.write(
-                        "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (21, " + str(
+                        "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (31, " + str(
                             alt_vids[key]) + ", " + str(average) + " );\n")
                     processed += 1
                     print("Processed: " + str(processed) + "/" + vid_amount)

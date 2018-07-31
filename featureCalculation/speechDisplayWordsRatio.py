@@ -44,7 +44,7 @@ for trans in transcript:
         # print row[1]
         value = 0
     file.write(
-        "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (23, " + str(trans['id']) + ", " + str(
+        "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (34, " + str(trans['id']) + ", " + str(
             ratio) + " );\n")
 
 file.close()

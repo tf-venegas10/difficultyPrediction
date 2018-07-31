@@ -109,7 +109,7 @@ for key in texts.keys():
     data = texts[key]
     if 'words' in data and 'duration' in data:
         average = float(data['words'])/data['duration']
-        output.write("INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (22, " + str(
+        output.write("INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (32, " + str(
                             key) + ", " + str(average) + " );\n")
 
 print(texts)

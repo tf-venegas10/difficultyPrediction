@@ -68,7 +68,7 @@ transcript = json.loads(lines)
 
 rootdir = "E:/Coursera"
 processed = 0
-output = open("wordsPerMinuteWhole.sql", "a")
+output = open("wordsPerMinuteWholeVideo.sql", "a")
 
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:
@@ -87,7 +87,7 @@ for subdir, dirs, files in os.walk(rootdir):
                     duration = getVideoDurationMins(vid_path)
                     print("Duration [s]: " + str(duration))
                     processed = processed + 1
-                    print("Processed: " + str(processed/2)+"/"+str(total_vids))
+                    print("Processed: " + str(processed)+"/"+str(total_vids))
                     # print(text)
                     for val in transcript:
                         if val['id'] == vids[key]:
@@ -101,5 +101,5 @@ for subdir, dirs, files in os.walk(rootdir):
                                 print "not read at id: " + str(val['id'])
                                 # print row[1]
                                 value = 0
-                            output.write("INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (24, " + str(
+                            output.write("INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (33, " + str(
                                 vids[key]) + ", " + str(average) + " );\n")

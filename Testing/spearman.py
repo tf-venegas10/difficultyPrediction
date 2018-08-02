@@ -27,6 +27,10 @@ for row in cur.fetchall():
         features[row[1]]=[row[2]]
 
 for key in features.keys():
-    print(key)
-    print(sy.spearmanr(features[key],features['qualification']))
-    print(sy.pearsonr(features[key],features['qualification']))
+
+    try:
+        print(key)
+        print(sy.spearmanr(features[key],features['qualification']))
+        print(sy.pearsonr(features[key],features['qualification']))
+    except Exception :
+        print ("*******************************************"+key+" FAILED **************")

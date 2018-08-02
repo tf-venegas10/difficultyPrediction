@@ -1,6 +1,8 @@
-from PIL import Image
+import numpy as np
+import imutils
 import cv2
 import os
+from PIL import Image
 import sys
 import MySQLdb
 import re
@@ -22,28 +24,28 @@ def getVideoDurationSecs(path_to_video):
     return duration
 
 
-def getMainColors(colors, image):
-    cols = image.getcolors(maxcolors=2000000)
-    for col in cols:
-        count = col[0]
-        key = '#%02x%02x%02x' % col[1]
-        if not key in colors:
-            colors[key] = count
-        else:
-            colors[key] += count
+def image_colorfulness(image):
+    # split the image into its respective RGB components
+    (B, G, R) = cv2.split(image.astype("float"))
+
+    # compute rg = R - G
+    rg = np.absolute(R - G)
+
+    # compute yb = 0.5 * (R + G) - B
+    yb = np.absolute(0.5 * (R + G) - B)
+
+    # compute the mean and standard deviation of both `rg` and `yb`
+    (rbMean, rbStd) = (np.mean(rg), np.std(rg))
+    (ybMean, ybStd) = (np.mean(yb), np.std(yb))
+
+    # combine the mean and standard deviations
+    stdRoot = np.sqrt((rbStd ** 2) + (ybStd ** 2))
+    meanRoot = np.sqrt((rbMean ** 2) + (ybMean ** 2))
+
+    # derive the "colorfulness" metric and return it
+    return stdRoot + (0.3 * meanRoot)
 
 
-def getDominantColor(colors):
-    dominant = 0
-    k_dominant = ''
-    for key in colors.keys():
-        if colors[key] > dominant:
-            dominant = colors[key]
-            k_dominant = key
-    k_dominant = k_dominant.replace('#', "0x")
-    return float.fromhex(k_dominant)
-
-# DB connection with our dataset server
 dbcomplete = MySQLdb.connect(host="qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
                              # your host, usually localhost
                              user="znrmxn5ahxiedok5",  # your username
@@ -51,7 +53,6 @@ dbcomplete = MySQLdb.connect(host="qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.a
                              # port="3306",
                              db="uzzonr2rx4qx8zu4")
 
-# DB connection with our data server
 db = MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",  # your host, usually localhost
                      user="gh7u6wguchfrkxo1",  # your username
                      passwd="lqgvsrxvaeyb8uql",  # your password
@@ -63,7 +64,6 @@ cur = db.cursor()
 
 ids = {}
 
-# Path search
 curcomplete.execute("SELECT * FROM learning_resources;")
 for row in curcomplete.fetchall():
     path = row[2].replace(
@@ -87,12 +87,14 @@ db.close()
 reload(sys)  # Reload does the trick!
 sys.setdefaultencoding('UTF8')
 
-ospath = os.path.dirname(__file__).replace("/featureCalculation", "")
+ospath = os.path.dirname(__file__)
+ospath = ospath.replace("/featureCalculation", "")
 rootdir = "E:/Coursera"
-img_path = (ospath + "/InitialData/image.jpg")  # .replace("/", "\\")
+export = open(ospath + '/InitialData/video_caption_text.json', 'w')
+img_path = (ospath + "/InitialData/image2.jpg")  # .replace("/", "\\")
 processed = 0
 
-output = open("Dominant_Video_Color.sql", "a")
+output = open("Video_Average_Colorfulness.sql", "a")
 
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:
@@ -108,33 +110,37 @@ for subdir, dirs, files in os.walk(rootdir):
                 # if not key.endswith(".mp4"):
                 # print("THIS IS KEY: " + key)
                 if name.startswith(key):
-                    counti = 0
                     cap = cv2.VideoCapture(vid_path)
+                    counti = 0
                     duration = getVideoDurationSecs(vid_path)
                     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
                     print("Duration [s]: " + str(duration))
                     interval = int(math.floor((frame_count / duration) * 1))
                     print("Interval: " + str(interval))
-                    cols = {}
+                    colorful = 0.0
+                    amount = 0
 
                     while cap.isOpened():
                         ret, frame = cap.read()
                         if ret:
                             if counti % interval == 0:
                                 try:
+                                    # cv2.imshow('frame', frame)
                                     cv2.imwrite(img_path, frame)
-                                    img = Image.open(img_path)
-                                    getMainColors(cols, img)
+                                    img = cv2.imread(img_path)
+                                    img = imutils.resize(img, width=250)
+                                    colorful += image_colorfulness(img)
+                                    amount += 1
                                 except OSError:
                                     print("FILE NOT FOUND")
                         else:
                             break
-                    dominant = getDominantColor(cols)
-                    print("DOMINANT: " + str(dominant))
+                    average = colorful/float(amount)
+                    print("AVERAGE: "+str(average))
+                    output.write(
+                        "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (36, " + str(
+                            vids[key]) + ", " + str(average) + " );\n")
                     processed = processed + 1
                     print("Processed: " + str(processed) + "/" + str(vids_amount))
                     cap.release()
                     cv2.destroyAllWindows()
-                    output.write(
-                        "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (35, " + str(
-                            vids[key]) + ", " + str(dominant) + " );\n")

@@ -2,7 +2,6 @@ import MySQLdb
 import re
 import sys
 import os
-import math
 from textstat.textstat import textstat
 
 
@@ -110,9 +109,9 @@ for subdir, dirs, files in os.walk(rootdir):
                             print("Adjusting format")
                         line = srt.readline()
                     if not time == 0:
-                        average = math.ceil(words / time)
+                        average = float(words) / float(time)
                     if average < 0:
-                        average *= -1
+                        average *= -1.0
                     print("Average: " + str(average))
                     srt.close()
 
@@ -152,9 +151,9 @@ for subdir, dirs, files in os.walk(rootdir):
                             print("Adjusting format")
                         line = srt.readline()
                     if not time == 0:
-                        average = math.ceil(words / time)
+                        average = float(words) / float(time)
                     if average < 0:
-                        average *= -1
+                        average *= -1.0
                     print("Average: " + str(average))
                     srt.close()
 

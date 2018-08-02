@@ -1,10 +1,8 @@
+import os
+import sys
 import MySQLdb
 import re
 import subprocess
-import os
-import sys
-from textstat.textstat import textstat
-import json
 
 
 def getVideoDurationMins(path_to_video):
@@ -16,7 +14,7 @@ def getVideoDurationMins(path_to_video):
     mult = 60.0
     duration = 0.0
     for i in range(3):
-        duration += float(time[i]) * mult
+        duration += int(float(time[i])) * mult
         mult /= 60.0
     return duration
 
@@ -50,25 +48,26 @@ for row in curcomplete.fetchall():
 dbcomplete.close()
 
 vids = {}
-cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION_AMOUNT>0")
+cur.execute("SELECT * FROM VIDEO_QUALIFICATION  WHERE QUALIFICATION_AMOUNT>0")
 for row in cur.fetchall():
     if str(row[0]) in ids:
         vids[ids[str(row[0])]] = row[0]
 
-print("Amount: " + str(len(vids)))
-total_vids = len(vids)
+vids_amount = len(vids)
 db.close()
 
+# sys.setdefaultencoding() does not exist, here!
 reload(sys)  # Reload does the trick!
 sys.setdefaultencoding('UTF8')
 
-transcriptFile = open('../InitialData/video_caption_text.json', 'r')
-lines = transcriptFile.read()
-transcript = json.loads(lines)
-
+ospath = os.path.dirname(__file__)
+ospath = ospath.replace("/featureCalculation", "")
 rootdir = "E:/Coursera"
+export = open(ospath + '/InitialData/video_caption_text.json', 'w')
+img_path = (ospath + "/InitialData/image.jpg")  # .replace("/", "\\")
 processed = 0
-output = open("wordsPerMinuteWholeVideo.sql", "a")
+
+output = open("Video_Duration.sql", "a")
 
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:
@@ -76,30 +75,20 @@ for subdir, dirs, files in os.walk(rootdir):
         # vid_path = (ospath + "/InitialData/01_how-can-i-succeed-in-this-course.mp4")  # .replace("/", "\\")
         # print(img_path)
         # print(vid_path)
-        route = os.path.join(subdir, file)
-        name = route.replace("\\", "/")
         if file.endswith(".mp4"):
+            route = os.path.join(subdir, file)
+            name = route.replace("\\", "/")
             print(name)
             for key in vids.keys():
                 # if not key.endswith(".mp4"):
                 # print("THIS IS KEY: " + key)
                 if name.startswith(key):
+                    text = [""]
+                    counti = 0
                     duration = getVideoDurationMins(vid_path)
-                    print("Duration [s]: " + str(duration))
+                    print("Duration [m]: " + str(duration))
+                    output.write(
+                        "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (37, " + str(
+                            vids[key]) + ", " + str(duration) + " );\n")
                     processed = processed + 1
-                    print("Processed: " + str(processed)+"/"+str(total_vids))
-                    # print(text)
-                    for val in transcript:
-                        if val['id'] == vids[key]:
-                            text = val['text']
-                            print(text)
-                            average = 0.0
-                            try:
-                                value = textstat.lexicon_count(text)
-                                average = float(value)/float(duration)
-                            except(UnicodeDecodeError):
-                                print "not read at id: " + str(val['id'])
-                                # print row[1]
-                                value = 0
-                            output.write("INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (33, " + str(
-                                vids[key]) + ", " + str(average) + " );\n")
+                    print("Processed: " + str(processed)+"/"+str(vids_amount))

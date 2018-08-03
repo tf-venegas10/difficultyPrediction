@@ -53,7 +53,7 @@ dbcomplete.close()
 
 vids = {}
 alt_vids = {}
-cur.execute("SELECT * FROM VIDEO_QUALIFICATION")
+cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION_AMOUNT>0")
 for row in cur.fetchall():
     if str(row[0]) in ids:
         vids[ids[str(row[0])]] = row[0]

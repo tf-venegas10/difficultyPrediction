@@ -84,10 +84,10 @@ sys.setdefaultencoding('UTF8')
 
 ospath = os.path.dirname(__file__).replace("/featureCalculation", "")
 rootdir = "E:/Coursera"
-img_path = (ospath + "/InitialData/image2.jpg")  # .replace("/", "\\")
+img_path = (ospath + "/InitialData/image.jpg")  # .replace("/", "\\")
 processed = 0
 
-output = open("Video_Average_Hue.sql", "a")
+output = open("Video_Average_Light_Exposure.sql", "a")
 
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:

@@ -72,7 +72,7 @@ rootdir = "E:/Coursera"
 img_path = (ospath + "/InitialData/image2.jpg")  # .replace("/", "\\")
 processed = 0
 
-output = open("Video_Average_Hue.sql", "a")
+output = open("Video_Aspect_Ratio.sql", "a")
 
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:

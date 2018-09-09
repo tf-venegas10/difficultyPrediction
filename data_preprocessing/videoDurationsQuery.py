@@ -48,7 +48,7 @@ for row in curcomplete.fetchall():
 dbcomplete.close()
 
 vids = {}
-cur.execute("SELECT * FROM VIDEO_QUALIFICATION  WHERE QUALIFICATION_AMOUNT")
+cur.execute("SELECT * FROM VIDEO_QUALIFICATION")
 for row in cur.fetchall():
     if str(row[0]) in ids:
         vids[ids[str(row[0])]] = row[0]
@@ -63,11 +63,10 @@ sys.setdefaultencoding('UTF8')
 ospath = os.path.dirname(__file__)
 ospath = ospath.replace("/featureCalculation", "")
 rootdir = "E:/Coursera"
-export = open(ospath + '/InitialData/video_caption_text.json', 'w')
 img_path = (ospath + "/InitialData/image.jpg")  # .replace("/", "\\")
 processed = 0
 
-output = open("Video_Duration.sql", "a")
+output = open("DurationQuery.sql", "a")
 
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:
@@ -88,7 +87,7 @@ for subdir, dirs, files in os.walk(rootdir):
                     duration = getVideoDurationMins(vid_path)
                     print("Duration [m]: " + str(duration))
                     output.write(
-                        "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (37, " + str(
+                        "INSERT INTO VIDEO_DURATION (video_id, value) VALUES (" + str(
                             vids[key]) + ", " + str(duration) + " );\n")
                     processed = processed + 1
                     print("Processed: " + str(processed)+"/"+str(vids_amount))

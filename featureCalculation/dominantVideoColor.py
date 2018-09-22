@@ -89,7 +89,7 @@ sys.setdefaultencoding('UTF8')
 
 ospath = os.path.dirname(__file__).replace("/featureCalculation", "")
 rootdir = "E:/Coursera"
-img_path = (ospath + "/InitialData/image.jpg")  # .replace("/", "\\")
+img_path = (ospath + "/InitialData/image2.jpg")  # .replace("/", "\\")
 processed = 0
 
 output = open("Dominant_Video_Color.sql", "a")
@@ -129,7 +129,8 @@ for subdir, dirs, files in os.walk(rootdir):
                                     print("FILE NOT FOUND")
                         else:
                             break
-                    dominant = getDominantColor(cols)
+                        counti = counti + 1
+                    dominant = getDominantColor(cols)/10000
                     print("DOMINANT: " + str(dominant))
                     processed = processed + 1
                     print("Processed: " + str(processed) + "/" + str(vids_amount))

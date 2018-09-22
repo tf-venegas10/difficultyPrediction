@@ -32,7 +32,8 @@ for user in users:
             print(int(eval['resource']['evaluation'][0]['answer']['value']))
 
         videosNumber[eval['resource']['id']]+=1
-        videosQual[eval['resource']['id']]= (videosQual[eval['resource']['id']]+ int(eval['resource']['evaluation'][0]['answer']['value']))/videosNumber[eval['resource']['id']]
+        videosQual[eval['resource']['id']]= (videosQual[eval['resource']['id']]*(videosNumber[eval['resource']['id']]-1)+ int(eval['resource']['evaluation'][0]['answer']['value']))/videosNumber[eval['resource']['id']]
+
 text=read2.read()
 users=json.loads(text)
 
@@ -40,9 +41,8 @@ for user in users:
     for eval in user['evaluations']:
         if int(eval['resource']['evaluation'][0]['answer']['value'])<1 or int(eval['resource']['evaluation'][0]['answer']['value'])>5 :
             print(int(eval['resource']['evaluation'][0]['answer']['value']))
-
         videosNumber[eval['resource']['id']]+=1
-        videosQual[eval['resource']['id']]= (videosQual[eval['resource']['id']]+ int(eval['resource']['evaluation'][0]['answer']['value']))/videosNumber[eval['resource']['id']]
+        videosQual[eval['resource']['id']] = (videosQual[eval['resource']['id']] * (videosNumber[eval['resource']['id']] - 1) + int(eval['resource']['evaluation'][0]['answer']['value'])) / videosNumber[eval['resource']['id']]
 print("json processing done")
 
 for i in xrange(1,5841):
@@ -53,4 +53,3 @@ for i in xrange(1,5841):
 
 write.close()
 read.close()
-cur.close()

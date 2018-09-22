@@ -49,9 +49,15 @@ for key in features.keys():
 
     except Exception :
         print ("*******************************************"+key+" FAILED **************")
+        print(len(features[key]))
+        print(len(features['qualification']))
 
-
+i=0
 for key,value in sorted(spearman.iteritems(), key=lambda (k,v): (math.fabs(v),k)):
-    print(key)
-    print("Spearman's index: "+ str(spearman[key])+" pValue: "+str(spearmanPval[key]))
-    print("Pearson's index: "+ str(pearson[key])+" pValue: "+str(pearsonPval[key]))
+    i+=1
+    print(i)
+
+    if key!="qualification":
+        print(key)
+        print("Spearman's index: "+ str(spearman[key])+" pValue: "+str(spearmanPval[key]))
+        print("Pearson's index: "+ str(pearson[key])+" pValue: "+str(pearsonPval[key]))

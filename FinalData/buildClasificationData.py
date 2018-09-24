@@ -3,11 +3,17 @@ import json
 import random
 from imblearn.over_sampling import SMOTE
 
-db= MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",    # your host, usually localhost
-                     user="gh7u6wguchfrkxo1",         # your username
-                     passwd="lqgvsrxvaeyb8uql", # your password
+# db= MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",    # your host, usually localhost
+#                      user="gh7u6wguchfrkxo1",         # your username
+#                      passwd="lqgvsrxvaeyb8uql", # your password
+#                     # port="3306",
+#                      db="n501u8qclhvj0mdv")
+db= MySQLdb.connect(host="172.24.99.23",    # your host, usually localhost
+                     user="root",
+                    port="3306",
+                     passwd="tomasmarica", # your password
                     # port="3306",
-                     db="n501u8qclhvj0mdv")
+                     db="dajee")
 cur = db.cursor()
 #file=open("classificationData.json","w")
 #testSet=open("testSetClassification.json","w")

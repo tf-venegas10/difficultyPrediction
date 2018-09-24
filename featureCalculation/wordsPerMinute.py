@@ -20,36 +20,27 @@ def getMinutes(start, end):
     return time_e - time_s
 
 
-dbcomplete = MySQLdb.connect(host="qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-                             # your host, usually localhost
-                             user="znrmxn5ahxiedok5",  # your username
-                             passwd="r8lkor9pav5ag5uz",  # your password
-                             # port="3306",
-                             db="uzzonr2rx4qx8zu4")
-
-db = MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",  # your host, usually localhost
-                     user="gh7u6wguchfrkxo1",  # your username
-                     passwd="lqgvsrxvaeyb8uql",  # your password
+# DB connection with our dataset server
+db = MySQLdb.connect(host="localhost",  # your host, usually localhost
+                     user="root",  # your username
+                     passwd="tomasmarica",  # your password
                      # port="3306",
-                     db="n501u8qclhvj0mdv")
+                     db="dajee")
 
-curcomplete = dbcomplete.cursor()
 cur = db.cursor()
 
 ids = {}
 alt_ids = {}
 
-curcomplete.execute("SELECT * FROM learning_resources;")
-for row in curcomplete.fetchall():
+cur.execute("SELECT * FROM learning_resources;")
+for row in cur.fetchall():
     path = row[2].replace(
         "/Users/rubenmanrique/Dropbox/DoctoradoAndes/Investigacion/Course Sequences Dataset/CourseraTexto/",
-        "E:/Coursera/").replace("/Users/rubenmanrique/Downloads/CourseraTexto/", "E:/Coursera/")
-    name = re.sub(r'\.((t(x(t)?)?)|(e(n)?)|(s(r(t)?)?))(\.(t(x(t)?)?)?)?', '.en.srt', path)
-    alt_name = re.sub(r'\.((t(x(t)?)?)|(e(n)?)|(s(r(t)?)?))(\.(t(x(t)?)?)?)?', '.srt', path)
+        "C:/Tesis ISIS/videosLu/frontend/public/Coursera/").replace("/Users/rubenmanrique/Downloads/CourseraTexto/", "C:/Tesis ISIS/videosLu/frontend/public/Coursera/")
+    name = re.sub(r'\.((t(x(t)?)?)|(e(n)?)|(s(r(t)?)?)|(m(p(4)?)?))(\.(t(x(t)?)?)?)?', '.en.srt', path)
+    alt_name = re.sub(r'\.((t(x(t)?)?)|(e(n)?)|(s(r(t)?)?)|(m(p(4)?)?))(\.(t(x(t)?)?)?)?', '.srt', path)
     ids[str(row[0])] = name
     alt_ids[str(row[0])] = alt_name
-
-dbcomplete.close()
 
 vids = {}
 alt_vids = {}
@@ -68,10 +59,12 @@ sys.setdefaultencoding('UTF8')
 
 ospath = os.path.dirname(__file__)
 ospath = ospath.replace("/featureCalculation", "")
-rootdir = "E:/Coursera"
+rootdir = "C:/Tesis ISIS/videosLu/frontend/public/Coursera"
 output = open("wordsPerMinute.sql", "a")
 processed = 0
 vids_processed = {}
+
+print vids
 
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:
@@ -86,8 +79,7 @@ for subdir, dirs, files in os.walk(rootdir):
             for key in vids.keys():
                 # if not key.endswith(".mp4"):
                 # print("THIS IS KEY: " + key)
-                key_suffix = key.replace(".en.srt", "")
-                if name.startswith(key) and key_suffix not in vids_processed:
+                if name.startswith(key) and (vids[key] not in vids_processed):
                     srt = open(srt_path, "r")
                     time = 0
                     words = 0
@@ -120,7 +112,7 @@ for subdir, dirs, files in os.walk(rootdir):
                             vids[key]) + ", " + str(average) + " );\n")
                     processed += 1
                     print("Processed: " + str(processed) + "/" + vid_amount)
-                    vids_processed[key_suffix] = 1
+                    vids_processed[vids[key]] = 1
         elif file.endswith(".srt"):
             route = os.path.join(subdir, file)
             name = route.replace("\\", "/")
@@ -128,8 +120,7 @@ for subdir, dirs, files in os.walk(rootdir):
             for key in alt_vids.keys():
                 # if not key.endswith(".mp4"):
                 # print("THIS IS KEY: " + key)
-                key_suffix = key.replace(".srt", "")
-                if name.startswith(key) and key_suffix not in vids_processed:
+                if name.startswith(key) and alt_vids[key] not in vids_processed:
                     srt = open(srt_path, "r")
                     time = 0
                     words = 0
@@ -162,5 +153,10 @@ for subdir, dirs, files in os.walk(rootdir):
                             alt_vids[key]) + ", " + str(average) + " );\n")
                     processed += 1
                     print("Processed: " + str(processed) + "/" + vid_amount)
-                    vids_processed[key_suffix] = 1
+                    vids_processed[alt_vids[key]] = 1
+for key in sorted(vids.keys()):
+    if vids[key] not in vids_processed:
+        print vids[key]
+        print alt_vids[key]
+        print key
 output.close()

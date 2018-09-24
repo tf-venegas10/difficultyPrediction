@@ -6,7 +6,7 @@ import subprocess
 
 
 def getVideoDurationMins(path_to_video):
-    result = subprocess.Popen(["C:/Users/juanm/Downloads/ffmpeg/bin/ffprobe.exe", path_to_video],
+    result = subprocess.Popen(["C:/ffmpeg/bin/ffprobe.exe", path_to_video],
                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     time = ([x for x in result.stdout.readlines() if "Duration" in x])[0].split(",")[0].strip().replace("Duration: ",
                                                                                                         "").split(":")
@@ -19,33 +19,36 @@ def getVideoDurationMins(path_to_video):
     return duration
 
 
-dbcomplete = MySQLdb.connect(host="qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-                             # your host, usually localhost
-                             user="znrmxn5ahxiedok5",  # your username
-                             passwd="r8lkor9pav5ag5uz",  # your password
-                             # port="3306",
-                             db="uzzonr2rx4qx8zu4")
+#dbcomplete = MySQLdb.connect(host="qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+#                            # your host, usually localhost
+#                             user="znrmxn5ahxiedok5",  # your username
+#                             passwd="r8lkor9pav5ag5uz",  # your password
+#                             # port="3306",
+#                             db="uzzonr2rx4qx8zu4")
 
-db = MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",  # your host, usually localhost
-                     user="gh7u6wguchfrkxo1",  # your username
-                     passwd="lqgvsrxvaeyb8uql",  # your password
+#db = MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",  # your host, usually localhost
+#                     user="gh7u6wguchfrkxo1",  # your username
+#                     passwd="lqgvsrxvaeyb8uql",  # your password
+#                     # port="3306",
+#                     db="n501u8qclhvj0mdv")
+
+db = MySQLdb.connect(host="localhost",  # your host, usually localhost
+                     user="root",  # your username
+                     passwd="tomasmarica",  # your password
                      # port="3306",
-                     db="n501u8qclhvj0mdv")
+                     db="dajee")
 
-curcomplete = dbcomplete.cursor()
 cur = db.cursor()
 
 ids = {}
 
-curcomplete.execute("SELECT * FROM learning_resources;")
-for row in curcomplete.fetchall():
+cur.execute("SELECT * FROM learning_resources;")
+for row in cur.fetchall():
     path = row[2].replace(
         "/Users/rubenmanrique/Dropbox/DoctoradoAndes/Investigacion/Course Sequences Dataset/CourseraTexto/",
-        "E:/Coursera/").replace("/Users/rubenmanrique/Downloads/CourseraTexto/", "E:/Coursera/")
+        "C:/Tesis ISIS/videosLu/frontend/public/Coursera").replace("/Users/rubenmanrique/Downloads/CourseraTexto/", "C:/Tesis ISIS/videosLu/frontend/public/Coursera")
     name = re.sub(r'\.((t(x(t)?)?)|(e(n)?)|(s(r(t)?)?))(\.(t(x(t)?)?)?)?', '.mp4', path)
     ids[str(row[0])] = name
-
-dbcomplete.close()
 
 vids = {}
 cur.execute("SELECT * FROM VIDEO_QUALIFICATION  WHERE QUALIFICATION_AMOUNT>0")
@@ -54,6 +57,7 @@ for row in cur.fetchall():
         vids[ids[str(row[0])]] = row[0]
 
 vids_amount = len(vids)
+cur.close()
 db.close()
 
 # sys.setdefaultencoding() does not exist, here!
@@ -62,9 +66,8 @@ sys.setdefaultencoding('UTF8')
 
 ospath = os.path.dirname(__file__)
 ospath = ospath.replace("/featureCalculation", "")
-rootdir = "E:/Coursera"
+rootdir = "C:/Tesis ISIS/videosLu/frontend/public/Coursera"
 export = open(ospath + '/InitialData/video_caption_text.json', 'w')
-img_path = (ospath + "/InitialData/image.jpg")  # .replace("/", "\\")
 processed = 0
 
 output = open("Video_Duration.sql", "a")

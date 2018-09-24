@@ -3,11 +3,12 @@ import json
 import MySQLdb
 
 # Feature id 9
-db = MySQLdb.connect(host="qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",  # your host, usually localhost
-                     user="znrmxn5ahxiedok5",  # your username
-                     passwd="r8lkor9pav5ag5uz",  # your password
+# DB connection with our dataset server
+db = MySQLdb.connect(host="localhost",  # your host, usually localhost
+                     user="root",  # your username
+                     passwd="tomasmarica",  # your password
                      # port="3306",
-                     db="uzzonr2rx4qx8zu4")
+                     db="dajee")
 
 curRead = db.cursor()
 curRead.execute("SELECT * FROM resource_content")

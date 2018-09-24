@@ -2,11 +2,17 @@ import MySQLdb
 import json
 import scipy.stats  as sy
 import math
-db= MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",    # your host, usually localhost
-                     user="gh7u6wguchfrkxo1",         # your username
-                     passwd="lqgvsrxvaeyb8uql", # your password
-                    # port="3306",
-                     db="n501u8qclhvj0mdv")
+# db= MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",    # your host, usually localhost
+#                      user="gh7u6wguchfrkxo1",         # your username
+#                      passwd="lqgvsrxvaeyb8uql", # your password
+#                     # port="3306",
+#                      db="n501u8qclhvj0mdv")
+db = MySQLdb.connect(host="localhost",  # your host, usually localhost
+                     user="root",  # your username
+                     passwd="tomasmarica",  # your password
+                     # port="3306",
+                     db="dajee")
+
 cur = db.cursor()
 file=open("regressionData.json","w")
 #cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION<>0 ORDER BY VIDEO_ID");

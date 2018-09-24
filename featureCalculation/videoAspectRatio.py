@@ -1,4 +1,3 @@
-from PIL import Image
 import cv2
 import os
 import sys
@@ -6,11 +5,11 @@ import MySQLdb
 import re
 import subprocess
 import math
-import numpy as np
+
 
 
 def getVideoDurationSecs(path_to_video):
-    result = subprocess.Popen(["C:/Users/juanm/Downloads/ffmpeg/bin/ffprobe.exe", path_to_video],
+    result = subprocess.Popen(["C:/ffmpeg/bin/ffprobe.exe", path_to_video],
                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     time = ([x for x in result.stdout.readlines() if "Duration" in x])[0].split(",")[0].strip().replace("Duration: ",
                                                                                                         "").split(":")
@@ -24,35 +23,24 @@ def getVideoDurationSecs(path_to_video):
 
 
 # DB connection with our dataset server
-dbcomplete = MySQLdb.connect(host="qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-                             # your host, usually localhost
-                             user="znrmxn5ahxiedok5",  # your username
-                             passwd="r8lkor9pav5ag5uz",  # your password
-                             # port="3306",
-                             db="uzzonr2rx4qx8zu4")
-
-# DB connection with our data server
-db = MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",  # your host, usually localhost
-                     user="gh7u6wguchfrkxo1",  # your username
-                     passwd="lqgvsrxvaeyb8uql",  # your password
+db = MySQLdb.connect(host="localhost",  # your host, usually localhost
+                     user="root",  # your username
+                     passwd="tomasmarica",  # your password
                      # port="3306",
-                     db="n501u8qclhvj0mdv")
+                     db="dajee")
 
-curcomplete = dbcomplete.cursor()
 cur = db.cursor()
 
 ids = {}
 
 # Path search
-curcomplete.execute("SELECT * FROM learning_resources;")
-for row in curcomplete.fetchall():
+cur.execute("SELECT * FROM learning_resources;")
+for row in cur.fetchall():
     path = row[2].replace(
         "/Users/rubenmanrique/Dropbox/DoctoradoAndes/Investigacion/Course Sequences Dataset/CourseraTexto/",
-        "E:/Coursera/").replace("/Users/rubenmanrique/Downloads/CourseraTexto/", "E:/Coursera/")
+        "C:/Tesis ISIS/videosLu/frontend/public/Coursera/").replace("/Users/rubenmanrique/Downloads/CourseraTexto/", "C:/Tesis ISIS/videosLu/frontend/public/Coursera/")
     name = re.sub(r'\.((t(x(t)?)?)|(e(n)?)|(s(r(t)?)?))(\.(t(x(t)?)?)?)?', '.mp4', path)
     ids[str(row[0])] = name
-
-dbcomplete.close()
 
 vids = {}
 cur.execute("SELECT * FROM VIDEO_QUALIFICATION  WHERE QUALIFICATION_AMOUNT>0")
@@ -68,8 +56,8 @@ reload(sys)  # Reload does the trick!
 sys.setdefaultencoding('UTF8')
 
 ospath = os.path.dirname(__file__).replace("/featureCalculation", "")
-rootdir = "E:/Coursera"
-img_path = (ospath + "/InitialData/image2.jpg")  # .replace("/", "\\")
+rootdir = "C:/Tesis ISIS/videosLu/frontend/public/Coursera"
+img_path = (ospath + "/InitialData/image6.jpg")  # .replace("/", "\\")
 processed = 0
 
 output = open("Video_Aspect_Ratio.sql", "a")

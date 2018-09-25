@@ -311,3 +311,24 @@ INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 4718, 1
 INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 4720, 0.998233215548 );
 INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 4721, 0.997663551402 );
 INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 5840, 0.923076923077 );
+-- Feature update: 2018-09-25 10:38:48
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 7, 1.0 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 8, 1.0 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 11, 1.0 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 154, 0.989323843416 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 155, 0.994444444444 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 408, 1.0 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 410, 1.0 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 414, 1.0 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 5266, 1.0 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 1595, 0.992248062016 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 1597, 0.989417989418 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 1599, 0.986175115207 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 5407, 0.992366412214 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 5410, 0.99358974359 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 3216, 0.996913580247 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 4444, 1.0 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 4445, 1.0 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 5698, 0.997767857143 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 4608, 0.99794661191 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (38, 4704, 1.0 );

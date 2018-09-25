@@ -5,7 +5,8 @@ import MySQLdb
 import re
 import subprocess
 import math
-
+import time
+import datetime
 
 
 def getVideoDurationSecs(path_to_video):
@@ -38,12 +39,14 @@ cur.execute("SELECT * FROM learning_resources;")
 for row in cur.fetchall():
     path = row[2].replace(
         "/Users/rubenmanrique/Dropbox/DoctoradoAndes/Investigacion/Course Sequences Dataset/CourseraTexto/",
-        "C:/Tesis ISIS/videosLu/frontend/public/Coursera/").replace("/Users/rubenmanrique/Downloads/CourseraTexto/", "C:/Tesis ISIS/videosLu/frontend/public/Coursera/")
+        "C:/Tesis ISIS/videosLu/frontend/public/Coursera/").replace("/Users/rubenmanrique/Downloads/CourseraTexto/",
+                                                                    "C:/Tesis ISIS/videosLu/frontend/public/Coursera/")
     name = re.sub(r'\.((t(x(t)?)?)|(e(n)?)|(s(r(t)?)?))(\.(t(x(t)?)?)?)?', '.mp4', path)
     ids[str(row[0])] = name
 
 vids = {}
-cur.execute("SELECT * FROM VIDEO_QUALIFICATION  WHERE QUALIFICATION_AMOUNT>0")
+cur.execute("SELECT * FROM VIDEO_QUALIFICATION VQ WHERE QUALIFICATION_AMOUNT>0 AND VQ.VIDEO_ID NOT IN "
+            "(SELECT VIDEO_ID FROM FEATURES_PER_VIDEO WHERE FEATURE_ID=43);")
 for row in cur.fetchall():
     if str(row[0]) in ids:
         vids[ids[str(row[0])]] = row[0]
@@ -61,6 +64,8 @@ img_path = (ospath + "/InitialData/image6.jpg")  # .replace("/", "\\")
 processed = 0
 
 output = open("Video_Aspect_Ratio.sql", "a")
+output.write(
+    "-- Feature update: " + str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')) + "\n")
 
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:

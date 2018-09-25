@@ -5,6 +5,8 @@ import os
 import sys
 from textstat.textstat import textstat
 import json
+import datetime
+import time
 
 
 def getVideoDurationMins(path_to_video):
@@ -41,7 +43,8 @@ for row in cur.fetchall():
     ids[str(row[0])] = name
 
 vids = {}
-cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION_AMOUNT>0")
+cur.execute("SELECT * FROM VIDEO_QUALIFICATION VQ WHERE QUALIFICATION_AMOUNT>0 AND VQ.VIDEO_ID NOT IN "
+            "(SELECT VIDEO_ID FROM FEATURES_PER_VIDEO WHERE FEATURE_ID=33);")
 for row in cur.fetchall():
     if str(row[0]) in ids:
         vids[ids[str(row[0])]] = row[0]
@@ -60,6 +63,7 @@ transcript = json.loads(lines)
 rootdir = "C:/Tesis ISIS/videosLu/frontend/public/Coursera"
 processed = 0
 output = open("wordsPerMinuteWholeVideo.sql", "a")
+output.write("-- Feature update: "+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'))+"\n")
 
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:
@@ -94,3 +98,4 @@ for subdir, dirs, files in os.walk(rootdir):
                                 value = 0
                             output.write("INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (33, " + str(
                                 vids[key]) + ", " + str(average) + " );\n")
+output.close()

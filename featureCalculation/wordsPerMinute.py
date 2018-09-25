@@ -3,6 +3,8 @@ import re
 import sys
 import os
 from textstat.textstat import textstat
+import time
+import datetime
 
 
 def getMinutes(start, end):
@@ -44,7 +46,8 @@ for row in cur.fetchall():
 
 vids = {}
 alt_vids = {}
-cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION_AMOUNT>0")
+cur.execute("SELECT * FROM VIDEO_QUALIFICATION VQ WHERE QUALIFICATION_AMOUNT>0 AND VQ.VIDEO_ID NOT IN "
+            "(SELECT VIDEO_ID FROM FEATURES_PER_VIDEO WHERE FEATURE_ID=31);")
 for row in cur.fetchall():
     if str(row[0]) in ids:
         vids[ids[str(row[0])]] = row[0]
@@ -60,7 +63,8 @@ sys.setdefaultencoding('UTF8')
 ospath = os.path.dirname(__file__)
 ospath = ospath.replace("/featureCalculation", "")
 rootdir = "C:/Tesis ISIS/videosLu/frontend/public/Coursera"
-output = open("wordsPerMinute.sql", "a")
+output = open("wordsPerMinute.sql", "w+")
+output.write("-- Feature update: "+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'))+"\n")
 processed = 0
 vids_processed = {}
 

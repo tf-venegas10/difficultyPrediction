@@ -1,5 +1,7 @@
 from textblob import TextBlob
 import json
+import time
+import datetime
 
 # Feature id 9
 
@@ -8,6 +10,7 @@ lines = transcriptFile.read()
 transcript = json.loads(lines)
 
 file = open("Video_Noun_Phrases.sql", "a")
+file.write("-- Feature update: "+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'))+"\n")
 
 for trans in transcript:
     text = trans['text']

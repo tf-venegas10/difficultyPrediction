@@ -1,7 +1,7 @@
 import json
 import MySQLdb
 
-write=open("Concepts.sql","a")
+write=open("Concepts.sql","w")
 read=open("./../initialData/evaluations.json","r")
 read2=open("./../initialData/evaluations_phase2.json","r")
 

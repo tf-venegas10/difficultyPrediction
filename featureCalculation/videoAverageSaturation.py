@@ -7,6 +7,8 @@ import re
 import subprocess
 import math
 import numpy as np
+import time
+import datetime
 
 
 def getVideoDurationSecs(path_to_video):
@@ -39,7 +41,7 @@ def calculateAverageSaturation(image):
 
 
 # DB connection with our dataset server
-#dbcomplete = MySQLdb.connect(host="qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+# dbcomplete = MySQLdb.connect(host="qbct6vwi8q648mrn.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
 #                             # your host, usually localhost
 #                             user="znrmxn5ahxiedok5",  # your username
 #                             passwd="r8lkor9pav5ag5uz",  # your password
@@ -47,13 +49,13 @@ def calculateAverageSaturation(image):
 #                             db="uzzonr2rx4qx8zu4")
 
 # DB connection with our data server
-#db = MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",  # your host, usually localhost
+# db = MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",  # your host, usually localhost
 #                     user="gh7u6wguchfrkxo1",  # your username
 #                     passwd="lqgvsrxvaeyb8uql",  # your password
 #                     # port="3306",
 #                     db="n501u8qclhvj0mdv")
 
-#curcomplete = dbcomplete.cursor()
+# curcomplete = dbcomplete.cursor()
 
 db = MySQLdb.connect(host="localhost",  # your host, usually localhost
                      user="root",  # your username
@@ -70,12 +72,14 @@ cur.execute("SELECT * FROM learning_resources;")
 for row in cur.fetchall():
     path = row[2].replace(
         "/Users/rubenmanrique/Dropbox/DoctoradoAndes/Investigacion/Course Sequences Dataset/CourseraTexto/",
-        "C:/Tesis ISIS/videosLu/frontend/public/Coursera/").replace("/Users/rubenmanrique/Downloads/CourseraTexto/", "C:/Tesis ISIS/videosLu/frontend/public/Coursera/")
+        "C:/Tesis ISIS/videosLu/frontend/public/Coursera/").replace("/Users/rubenmanrique/Downloads/CourseraTexto/",
+                                                                    "C:/Tesis ISIS/videosLu/frontend/public/Coursera/")
     name = re.sub(r'\.((t(x(t)?)?)|(e(n)?)|(s(r(t)?)?))(\.(t(x(t)?)?)?)?', '.mp4', path)
     ids[str(row[0])] = name
 
 vids = {}
-cur.execute("SELECT * FROM VIDEO_QUALIFICATION  WHERE QUALIFICATION_AMOUNT>0")
+cur.execute("SELECT * FROM VIDEO_QUALIFICATION VQ WHERE QUALIFICATION_AMOUNT>0 AND VQ.VIDEO_ID NOT IN "
+            "(SELECT VIDEO_ID FROM FEATURES_PER_VIDEO WHERE FEATURE_ID=39);")
 for row in cur.fetchall():
     if str(row[0]) in ids:
         vids[ids[str(row[0])]] = row[0]
@@ -94,6 +98,8 @@ img_path = (ospath + "/InitialData/image1.jpg")  # .replace("/", "\\")
 processed = 0
 
 output = open("Video_Average_Saturation.sql", "a")
+output.write(
+    "-- Feature update: " + str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')) + "\n")
 
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:

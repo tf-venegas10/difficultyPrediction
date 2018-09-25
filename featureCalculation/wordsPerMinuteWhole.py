@@ -4,6 +4,8 @@ import subprocess
 import os
 import sys
 from textstat.textstat import textstat
+import datetime
+import time
 
 
 def getVideoDurationMins(path_to_video):
@@ -40,7 +42,8 @@ for row in cur.fetchall():
     ids[str(row[0])] = name
 
 vids = {}
-cur.execute("SELECT * FROM VIDEO_QUALIFICATION ")
+cur.execute("SELECT * FROM VIDEO_QUALIFICATION VQ WHERE QUALIFICATION_AMOUNT>0 AND VQ.VIDEO_ID NOT IN "
+            "(SELECT VIDEO_ID FROM FEATURES_PER_VIDEO WHERE FEATURE_ID=32);")
 for row in cur.fetchall():
     if str(row[0]) in ids:
         vids[ids[str(row[0])]] = row[0]
@@ -55,7 +58,8 @@ sys.setdefaultencoding('UTF8')
 rootdir = "C:/Tesis ISIS/videosLu/frontend/public/Coursera"
 texts = {}
 processed = 0
-output = open("wordsPerMinuteWhole.sql", "a")
+output = open("wordsPerMinuteWhole.sql", "w+")
+output.write("-- Feature update: "+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'))+"\n")
 
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:
@@ -104,3 +108,4 @@ for key in texts.keys():
                             key) + ", " + str(average) + " );\n")
 
 print(texts)
+output.close()

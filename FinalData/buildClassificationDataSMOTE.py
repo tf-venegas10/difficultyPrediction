@@ -16,8 +16,8 @@ db = MySQLdb.connect(host="localhost",  # your host, usually localhost
 cur = db.cursor()
 # file=open("classificationData.json","w")
 # testSet=open("testSetClassification.json","w")
-csvTraining = open("classificationData.csv", "w")
-csvTestSet = open("testSetClassification.csv", "w")
+csvTraining = open("classificationData_SMOTE.csv", "w")
+csvTestSet = open("testSetClassification_SMOTE.csv", "w")
 
 cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION<>0");
 videos = {}

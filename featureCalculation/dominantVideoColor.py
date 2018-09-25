@@ -6,6 +6,8 @@ import MySQLdb
 import re
 import subprocess
 import math
+import time
+import datetime
 
 
 def getVideoDurationSecs(path_to_video):
@@ -64,7 +66,8 @@ for row in cur.fetchall():
     ids[str(row[0])] = name
 
 vids = {}
-cur.execute("SELECT * FROM VIDEO_QUALIFICATION  WHERE QUALIFICATION_AMOUNT>0")
+cur.execute("SELECT * FROM VIDEO_QUALIFICATION VQ WHERE QUALIFICATION_AMOUNT>0 AND VQ.VIDEO_ID NOT IN "
+            "(SELECT VIDEO_ID FROM FEATURES_PER_VIDEO WHERE FEATURE_ID=35);")
 for row in cur.fetchall():
     if str(row[0]) in ids:
         vids[ids[str(row[0])]] = row[0]
@@ -82,6 +85,7 @@ img_path = (ospath + "/InitialData/image2.jpg")  # .replace("/", "\\")
 processed = 0
 
 output = open("Dominant_Video_Color.sql", "a")
+output.write("-- Feature update: "+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'))+"\n")
 
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:

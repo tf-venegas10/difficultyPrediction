@@ -11,11 +11,11 @@ def random_oversampling(x_Features, y_Score):
     # Here the different score values are separated by classifier
     for i in range(len(y_Score)):
         if y_Score[i] == 'easy':
-            easy.append(x_Features[i])
+            easy.append({"features":x_Features[i], "key": i})
         elif y_Score[i] == 'intermediate':
-            intermediate.append(x_Features[i])
+            intermediate.append({"features":x_Features[i], "key": i})
         else:
-            difficult.append(x_Features[i])
+            difficult.append({"features":x_Features[i], "key": i})
 
     dominant = 0
 
@@ -26,24 +26,24 @@ def random_oversampling(x_Features, y_Score):
         dominant = len(intermediate)
     if dominant < len(difficult):
         dominant = len(difficult)
-
+    print(dominant)
     # Randomly append easy elements to the data set
     for i in range(dominant - len(easy)):
         rand = random.randint(0, len(easy)-1)
-        x_Features.append(easy[rand])
-        y_Score.append(easy[rand])
+        x_Features.append(easy[rand]["features"])
+        y_Score.append(y_Score[easy[rand]["key"]])
 
     # Randomly append intermediate elements to the data set
     for i in range(dominant - len(intermediate)):
         rand = random.randint(0, len(intermediate)-1)
-        x_Features.append(intermediate[rand])
-        y_Score.append(intermediate[rand])
+        x_Features.append(intermediate[rand]["features"])
+        y_Score.append(y_Score[intermediate[rand]["key"]])
 
     # Randomly append difficult elements to the data set
     for i in range(dominant - len(difficult)):
         rand = random.randint(0, len(difficult)-1)
-        x_Features.append(difficult[rand])
-        y_Score.append(difficult[rand])
+        x_Features.append(difficult[rand]["features"])
+        y_Score.append(y_Score[difficult[rand]["key"]])
 
 
 # DB connection with our dataset server

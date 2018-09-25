@@ -55,7 +55,7 @@ sys.setdefaultencoding('UTF8')
 rootdir = "C:/Tesis ISIS/videosLu/frontend/public/Coursera"
 texts = {}
 processed = 0
-output = open("wordsPerMinuteWhole.sql", "a")
+output = open("wordsPerMinuteWhole.sql", "w+")
 
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:

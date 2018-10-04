@@ -1,4 +1,4 @@
--- Feature update: 2018-09-25 10:07:33
+-- Feature update: 2018-10-02 14:39:26
 INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 5138, 264 );
 INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 5139, 60 );
 INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 5146, 71 );
@@ -332,3 +332,14 @@ INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 4445, 1
 INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 5698, 16 );
 INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 4608, 85 );
 INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 4704, 66 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 3, 204 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 1591, 65 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 1596, 111 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 1663, 30 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 1753, 113 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 5480, 261 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 4439, 46 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 5696, 21 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 5697, 7 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 5701, 5 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (14, 5702, 9 );

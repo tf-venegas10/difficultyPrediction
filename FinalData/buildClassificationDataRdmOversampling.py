@@ -46,18 +46,18 @@ def random_oversampling(x_Features, y_Score):
         y_Score.append(y_Score[difficult[rand]["key"]])
 
 
-# DB connection with our dataset server
-# db = MySQLdb.connect(host="localhost",  # your host, usually localhost
-#                      user="root",  # your username
-#                      passwd="tomasmarica",  # your password
-#                      # port="3306",
-#                      db="dajee")
-
-db = MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",  # your host, usually localhost
-                      user="gh7u6wguchfrkxo1",  # your username
-                      passwd="lqgvsrxvaeyb8uql",  # your password
+ #DB connection with our dataset server
+db = MySQLdb.connect(host="localhost",  # your host, usually localhost
+                      user="root",  # your username
+                      passwd="tomasmarica",  # your password
                       # port="3306",
-                      db="n501u8qclhvj0mdv")
+                      db="dajee")
+#
+# db = MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",  # your host, usually localhost
+#                       user="gh7u6wguchfrkxo1",  # your username
+#                       passwd="lqgvsrxvaeyb8uql",  # your password
+#                       # port="3306",
+#                       db="n501u8qclhvj0mdv")
 
 cur = db.cursor()
 # file=open("classificationData.json","w")

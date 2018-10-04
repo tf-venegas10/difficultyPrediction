@@ -7,7 +7,7 @@ transcriptFile = open('../InitialData/video_caption_text.json', 'r')
 lines = transcriptFile.read()
 transcript = json.loads(lines)
 
-file = open("flesch_kincaid_video_grade.sql", "a")
+file = open("flesch_kincaid_video_grade.sql", "w")
 
 for trans in transcript:
     text = trans['text']

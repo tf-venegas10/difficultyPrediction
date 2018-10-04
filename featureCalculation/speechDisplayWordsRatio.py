@@ -16,7 +16,7 @@ transcriptFile = open('../InitialData/video_caption_text.json', 'r')
 lines = transcriptFile.read()
 transcript = json.loads(lines)
 
-file = open("Speech_Display_Words_Ratio.sql", "a")
+file = open("Speech_Display_Words_Ratio.sql", "w")
 speech = {}
 
 for row in curRead.fetchall():

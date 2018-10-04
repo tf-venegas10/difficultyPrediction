@@ -9,7 +9,7 @@ transcriptFile = open('../InitialData/video_caption_text.json', 'r')
 lines = transcriptFile.read()
 transcript = json.loads(lines)
 
-file = open("Video_Noun_Phrases.sql", "a")
+file = open("Video_Noun_Phrases.sql", "w")
 file.write("-- Feature update: "+str(datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S'))+"\n")
 
 for trans in transcript:

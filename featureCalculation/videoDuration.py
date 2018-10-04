@@ -70,7 +70,6 @@ sys.setdefaultencoding('UTF8')
 ospath = os.path.dirname(__file__)
 ospath = ospath.replace("/featureCalculation", "")
 rootdir = "C:/Tesis ISIS/videosLu/frontend/public/Coursera"
-export = open(ospath + '/InitialData/video_caption_text.json', 'w')
 processed = 0
 
 output = open("Video_Duration.sql", "a")

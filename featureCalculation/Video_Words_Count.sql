@@ -331,3 +331,14 @@ INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (9, 4445, 41
 INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (9, 5698, 74 );
 INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (9, 4608, 237 );
 INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (9, 4704, 218 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (9, 3, 401 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (9, 1591, 207 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (9, 1596, 399 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (9, 1663, 77 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (9, 1753, 312 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (9, 5480, 761 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (9, 4439, 196 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (9, 5696, 69 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (9, 5697, 67 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (9, 5701, 17 );
+INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (9, 5702, 83 );

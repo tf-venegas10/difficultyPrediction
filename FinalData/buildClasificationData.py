@@ -8,7 +8,7 @@ from imblearn.over_sampling import SMOTE
 #                      passwd="lqgvsrxvaeyb8uql", # your password
 #                     # port="3306",
 #                      db="n501u8qclhvj0mdv")
-db = MySQLdb.connect(host="172.24.99.23",  # your host, usually localhost
+db = MySQLdb.connect(host="localhost",  # your host, usually localhost
                      user="root",  # your username
                      passwd="tomasmarica",  # your password
                      # port="3306",
@@ -85,9 +85,9 @@ for key in videos.keys():
         yScore.append(videos[key]["qualification"])
     i+=1
 
-sm = SMOTE()
-x_Features_res, y_Score_res = sm.fit_sample(xFeatures,yScore)
-print("total lenght after SMOTE: "+ str(len(y_Score_res)))
+
+x_Features_res, y_Score_res = (xFeatures,yScore)
+print("total lenght: "+ str(len(y_Score_res)))
 
 
 for feature in features:
@@ -102,7 +102,7 @@ for video in x_Features_res:
         csvTraining.write(str(feature)+";")
     csvTraining.write(str(y_Score_res[i])+"\n")
     i+=1
-print("There are "+str(i)+ " videos on the training set (SMOTE was applied)")
+print("There are "+str(i)+ " videos on the training set (no-SMOTE was applied)")
 
 i=0
 for video in xTestFeatures:

@@ -1,7 +1,7 @@
 import MySQLdb
 import json
 import random
-
+import sys
 
 # Method used to make random oversampling of the dataset
 def random_oversampling(x_Features, y_Score):
@@ -46,7 +46,12 @@ def random_oversampling(x_Features, y_Score):
         y_Score.append(y_Score[difficult[rand]["key"]])
 
 
- #DB connection with our dataset server
+arg = sys.argv[1]
+exclusive = False
+if arg == 'true':
+    exclusive = True
+
+#DB connection with our dataset server
 db = MySQLdb.connect(host="localhost",  # your host, usually localhost
                       user="root",  # your username
                       passwd="tomasmarica",  # your password
@@ -62,14 +67,21 @@ db = MySQLdb.connect(host="localhost",  # your host, usually localhost
 cur = db.cursor()
 # file=open("classificationData.json","w")
 # testSet=open("testSetClassification.json","w")
-csvTraining = open("classificationDataRandOversampling.csv", "w")
-csvTestSet = open("testSetClassificationRandOversampling.csv", "w")
+csvTraining = None
+csvTestSet = None
+if exclusive:
+    csvTraining = open("classificationDataRandOversamplingExclusive.csv", "w")
+    csvTestSet = open("testSetClassificationRandOversamplingExclusive.csv", "w")
+else:
+    csvTraining = open("classificationDataRandOversampling.csv", "w")
+    csvTestSet = open("testSetClassificationRandOversampling.csv", "w")
 
 cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION<>0")
 videos = {}
+temp = {}
 for row in cur.fetchall():
-    videos[row[0]] = {}
-    videos[row[0]]["VIDEOID"] = row[0]
+    temp[row[0]] = {}
+    temp[row[0]]["VIDEOID"] = row[0]
     # if (float(row[1]) <= 1.5):
     #     videos[row[0]]["qualification"] = "very difficult"
     # elif(float(row[1])<2.5):
@@ -82,11 +94,11 @@ for row in cur.fetchall():
     #     videos[row[0]]["qualification"] = "very easy"
 
     if float(row[1]) < 2.34:
-        videos[row[0]]["qualification"] = "difficult"
+        temp[row[0]]["qualification"] = "difficult"
     elif float(row[1]) < 3.67:
-        videos[row[0]]["qualification"] = "intermediate"
+        temp[row[0]]["qualification"] = "intermediate"
     else:
-        videos[row[0]]["qualification"] = "easy"
+        temp[row[0]]["qualification"] = "easy"
 
 cur.execute("SELECT FV.video_id, name, value, qualification " +
             "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID " +
@@ -94,7 +106,26 @@ cur.execute("SELECT FV.video_id, name, value, qualification " +
             "WHERE QUALIFICATION<>0;")
 
 for row in cur.fetchall():
-    videos[row[0]][row[1]] = row[2]
+    temp[row[0]][row[1]] = row[2]
+
+if exclusive:
+    dbcomplete = MySQLdb.connect(host="localhost",
+                                 # your host, usually localhost
+                                 user="root",  # your username
+                                 passwd="tomasmarica",  # your password
+                                 # port="3306",
+                                 db="cloud_backup")
+    curcomplete = dbcomplete.cursor()
+    curcomplete.execute("SELECT VIDEO_ID FROM VIDEO_QUALIFICATION WHERE QUALIFICATION_AMOUNT>0; ")
+
+    ids = []
+    for row in curcomplete.fetchall():
+        ids.append(row[0])
+    for key in temp.keys():
+        if key not in ids:
+            videos[key] = temp[key]
+else:
+    videos = temp
 
 results = []
 test = []

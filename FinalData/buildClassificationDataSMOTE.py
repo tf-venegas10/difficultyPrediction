@@ -2,12 +2,19 @@ import MySQLdb
 import json
 import random
 from imblearn.over_sampling import SMOTE
+import sys
 
 # db = MySQLdb.connect(host="l3855uft9zao23e2.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",  # your host, usually localhost
 #                      user="gh7u6wguchfrkxo1",  # your username
 #                      passwd="lqgvsrxvaeyb8uql",  # your password
 #                      # port="3306",
 #                      db="n501u8qclhvj0mdv")
+
+arg = sys.argv[1]
+exclusive = False
+if arg == 'true':
+    exclusive = True
+
 db = MySQLdb.connect(host="localhost",  # your host, usually localhost
                      user="root",  # your username
                      passwd="tomasmarica",  # your password
@@ -16,14 +23,22 @@ db = MySQLdb.connect(host="localhost",  # your host, usually localhost
 cur = db.cursor()
 # file=open("classificationData.json","w")
 # testSet=open("testSetClassification.json","w")
-csvTraining = open("classificationData_SMOTE.csv", "w")
-csvTestSet = open("testSetClassification_SMOTE.csv", "w")
 
-cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION<>0");
+csvTraining = None
+csvTestSet = None
+if exclusive:
+    csvTraining = open("classificationData_SMOTEExclusive.csv", "w")
+    csvTestSet = open("testSetClassification_SMOTEExclusive.csv", "w")
+else:
+    csvTraining = open("classificationData_SMOTE.csv", "w")
+    csvTestSet = open("testSetClassification_SMOTE.csv", "w")
+
+cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION<>0")
+temp = {}
 videos = {}
 for row in cur.fetchall():
-    videos[row[0]] = {}
-    videos[row[0]]["VIDEOID"] = row[0]
+    temp[row[0]] = {}
+    temp[row[0]]["VIDEOID"] = row[0]
     # if (float(row[1]) <= 1.5):
     #     videos[row[0]]["qualification"] = "very difficult"
     # elif(float(row[1])<2.5):
@@ -36,11 +51,11 @@ for row in cur.fetchall():
     #     videos[row[0]]["qualification"] = "very easy"
 
     if (float(row[1]) < 2.34):
-        videos[row[0]]["qualification"] = "difficult"
+        temp[row[0]]["qualification"] = "difficult"
     elif (float(row[1]) < 3.67):
-        videos[row[0]]["qualification"] = "intermediate"
+        temp[row[0]]["qualification"] = "intermediate"
     else:
-        videos[row[0]]["qualification"] = "easy"
+        temp[row[0]]["qualification"] = "easy"
 
 cur.execute("SELECT FV.video_id, name, value, qualification " +
             "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID " +
@@ -48,7 +63,26 @@ cur.execute("SELECT FV.video_id, name, value, qualification " +
             "WHERE (QUALIFICATION<>0 and name not like '%programming:%' and name not like '%math:%');")
 
 for row in cur.fetchall():
-    videos[row[0]][row[1]] = row[2]
+    temp[row[0]][row[1]] = row[2]
+
+if exclusive:
+    dbcomplete = MySQLdb.connect(host="localhost",
+                                 # your host, usually localhost
+                                 user="root",  # your username
+                                 passwd="tomasmarica",  # your password
+                                 # port="3306",
+                                 db="cloud_backup")
+    curcomplete = dbcomplete.cursor()
+    curcomplete.execute("SELECT VIDEO_ID FROM VIDEO_QUALIFICATION WHERE QUALIFICATION_AMOUNT>0; ")
+
+    ids = []
+    for row in curcomplete.fetchall():
+        ids.append(row[0])
+    for key in temp.keys():
+        if key not in ids:
+            videos[key] = temp[key]
+else:
+    videos = temp
 
 results = []
 test = []

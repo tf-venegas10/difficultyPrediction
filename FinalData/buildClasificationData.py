@@ -25,11 +25,11 @@ cur = db.cursor()
 csvTraining = None
 csvTestSet = None
 if exclusive:
-    csvTraining = open("classificationDataExclusive.csv", "w")
-    csvTestSet = open("testSetClassificationExclusive.csv", "w")
+    csvTraining = open("FinalData/classificationDataExclusive.csv", "w")
+    csvTestSet = open("FinalData/testSetClassificationExclusive.csv", "w")
 else:
-    csvTraining = open("classificationData.csv", "w")
-    csvTestSet = open("testSetClassification.csv", "w")
+    csvTraining = open("FinalData/classificationData.csv", "w")
+    csvTestSet = open("FinalData/testSetClassification.csv", "w")
 
 cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION_AMOUNT<>0");
 temp = {}

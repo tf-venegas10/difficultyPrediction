@@ -6,7 +6,7 @@ from __future__ import division
 
 #write.close()
 import json
-write=open("Qualification_majority_vote.sql","w")
+write=open("Qualification_majority_vote_binominal.sql","w")
 read=open("./../initialData/evaluations_new.json","r")
 read1=open("./../initialData/evaluations.json","r")
 read2=open("./../initialData/evaluations_phase2.json","r")
@@ -21,7 +21,7 @@ videosNumber={}
 #    videosNumber[row[0]]=row[2]
 
 for i in xrange(1,5841):
-    videosQual[i] = {"Easy":0,"VeryEasy":0,"Intermediate":0,"Difficult":0,"VeryDifficult":0}
+    videosQual[i] = {"Easy":0,"NotEasy":0}
     videosNumber[i]= 0
 
 

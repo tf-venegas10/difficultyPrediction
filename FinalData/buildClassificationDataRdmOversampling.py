@@ -103,7 +103,7 @@ for row in cur.fetchall():
 cur.execute("SELECT FV.video_id, name, value, qualification " +
             "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID " +
             "JOIN VIDEO_QUALIFICATION VQ ON FV.VIDEO_ID=VQ.VIDEO_ID " +
-            "WHERE QUALIFICATION<>0;")
+            "WHERE QUALIFICATION_AMOUNT<>0;")
 
 for row in cur.fetchall():
     temp[row[0]][row[1]] = row[2]

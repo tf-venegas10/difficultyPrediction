@@ -7,7 +7,7 @@ from __future__ import division
 #write.close()
 import json
 write=open("Qualification.sql","a")
-read=open("./../initialData/evaluations.json","r")
+read1=open("./../initialData/evaluations.json","r")
 read2=open("./../initialData/evaluations_phase2.json","r")
 
 
@@ -23,7 +23,7 @@ for i in xrange(1,5841):
     videosNumber[i]= 0
 
 
-text=read.read()
+text=read1.read()
 users=json.loads(text)
 
 for user in users:
@@ -52,4 +52,5 @@ for i in xrange(1,5841):
 
 
 write.close()
-read.close()
+read1.close()
+read2.close()

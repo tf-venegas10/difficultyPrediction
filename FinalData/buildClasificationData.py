@@ -37,28 +37,19 @@ videos = {}
 for row in cur.fetchall():
     temp[row[0]] = {}
     temp[row[0]]["VIDEOID"] = row[0]
-    # if (float(row[1]) <= 1.5):
-    #     videos[row[0]]["qualification"] = "very difficult"
-    # elif(float(row[1])<2.5):
-    #     videos[row[0]]["qualification"] = "difficult"
-    # elif(float(row[1])<=3.5):
-    #     videos[row[0]]["qualification"] = "neutral"
-    # elif(float(row[1])<4.5):
-    #     videos[row[0]]["qualification"] = "easy"
-    # else:
-    #     videos[row[0]]["qualification"] = "very easy"
 
-    if (float(row[1]) < 2.34):
-        temp[row[0]]["qualification"] = "difficult"
-    elif (float(row[1]) < 3.67):
-        temp[row[0]]["qualification"] = "intermediate"
-    else:
-        temp[row[0]]["qualification"] = "easy"
+    # if (float(row[1]) < 2.34):
+    #     temp[row[0]]["qualification"] = "difficult"
+    # elif (float(row[1]) < 3.67):
+    #     temp[row[0]]["qualification"] = "intermediate"
+    # else:
+    #     temp[row[0]]["qualification"] = "easy"
+    temp[row[0]]["qualification"] = row[1]
 
 cur.execute("SELECT FV.video_id, name, value, qualification " +
             "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID " +
             "JOIN VIDEO_QUALIFICATION VQ ON FV.VIDEO_ID=VQ.VIDEO_ID " +
-            "WHERE QUALIFICATION<>0;")
+            "WHERE QUALIFICATION_AMOUNT<>0;")
 
 for row in cur.fetchall():
     temp[row[0]][row[1]] = row[2]

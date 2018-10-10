@@ -21,9 +21,11 @@ for user in users:
         for concept in eval['concepts']:
             concepts[eval['resource']['id']][concept['uri']]=1
             allExsiting[concept['uri']]=1
-        for concept in eval['resource']['evaluation'][1]['answers']:
-            concepts[eval['resource']['id']][concept]=1
-            allExsiting[concept]=1
+        if (len(eval['resource']['evaluation']) > 1):
+            print(eval['resource']['evaluation'][1]['answers'])
+            for concept in eval['resource']['evaluation'][1]['answers']:
+                concepts[eval['resource']['id']][concept.lower()] = 1
+                allExsiting[concept.lower()] = 1
 
 
 text=read2.read()
@@ -34,17 +36,19 @@ for user in users:
         for concept in eval['concepts']:
             concepts[eval['resource']['id']][concept['uri']]=1
             allExsiting[concept['uri']]=1
-        for concept in eval['resource']['evaluation'][1]['answers']:
-            concepts[eval['resource']['id']][concept]=1
-            allExsiting[concept]=1
+        if(len(eval['resource']['evaluation'])>1):
+            print(eval['resource']['evaluation'][1]['answers'])
+            for concept in eval['resource']['evaluation'][1]['answers']:
+                concepts[eval['resource']['id']][concept.lower()]=1
+                allExsiting[concept.lower()]=1
 text=read3.read()
 users=json.loads(text)
 for user in users:
     for eval in user['evaluations']:
         concepts[eval['videoId']]["exists"]=1
         for concept in eval['topics']:
-            concepts[eval['videoId']][concept['value']]=1
-            allExsiting[concept['value']]=1
+            concepts[eval['videoId']][concept['value'].lower()]=1
+            allExsiting[concept['value'].lower()]=1
 i=100
 for key in allExsiting.keys():
     write.write("INSERT INTO FEATURES (ID,NAME) VALUES ("+str(i)+",'"+key+"');\n")

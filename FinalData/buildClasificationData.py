@@ -31,7 +31,7 @@ else:
     csvTraining = open("classificationData.csv", "w")
     csvTestSet = open("testSetClassification.csv", "w")
 
-cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION<>0");
+cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION_AMOUNT<>0");
 temp = {}
 videos = {}
 for row in cur.fetchall():

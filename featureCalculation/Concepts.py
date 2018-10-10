@@ -21,6 +21,10 @@ for user in users:
         for concept in eval['concepts']:
             concepts[eval['resource']['id']][concept['uri']]=1
             allExsiting[concept['uri']]=1
+        for concept in eval['resource']['evaluation'][1]['answers']:
+            concepts[eval['resource']['id']][concept]=1
+            allExsiting[concept]=1
+
 
 text=read2.read()
 users=json.loads(text)
@@ -30,6 +34,9 @@ for user in users:
         for concept in eval['concepts']:
             concepts[eval['resource']['id']][concept['uri']]=1
             allExsiting[concept['uri']]=1
+        for concept in eval['resource']['evaluation'][1]['answers']:
+            concepts[eval['resource']['id']][concept]=1
+            allExsiting[concept]=1
 text=read3.read()
 users=json.loads(text)
 for user in users:

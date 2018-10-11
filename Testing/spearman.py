@@ -14,7 +14,7 @@ db = MySQLdb.connect(host="localhost",  # your host, usually localhost
                      db="dajee")
 
 cur = db.cursor()
-file=open("regressionData.json","w")
+#file=open("regressionData.json","w")
 #cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION<>0 ORDER BY VIDEO_ID");
 features={}
 features["qualification"]=[]

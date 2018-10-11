@@ -1,6 +1,6 @@
 import numpy as np
 import MySQLdb
-
+import matplotlib.pyplot as plt
 
 db = MySQLdb.connect(host="localhost",  # your host, usually localhost
                      user="root",  # your username
@@ -23,7 +23,7 @@ pearsonPval={}
 cur.execute("SELECT FV.video_id, name, value, qualification "+
 "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID "+
 "JOIN VIDEO_QUALIFICATION VQ ON FV.VIDEO_ID=VQ.VIDEO_ID "+
- "WHERE QUALIFICATION<>0 ORDER BY VQ.VIDEO_ID;")
+ "WHERE QUALIFICATION_AMOUNT<>0 ORDER BY VQ.VIDEO_ID;")
 
 videoId=-1
 for row in cur.fetchall():
@@ -35,6 +35,29 @@ for row in cur.fetchall():
     else:
         features[row[1]]=[row[2]]
 
+values=[]
 for key in features.keys():
-    print(key+ " mean: "+str(np.mean(features[key])))
-    print ("Variance: " + np.var(features[key]))
+    if(key!="qualification"):
+        print(key)
+        mean=np.mean(features[key])
+        var= np.var(features[key])
+        values.append({"key":key, "mean": mean, "var" :var})
+
+values= sorted(values, key=lambda k: k['var'])
+vars=[]
+means=[]
+keys=[]
+show=False
+for i in xrange(len(values)):
+    if(values[i]["key"]=="WORDS_PER_MINUTE"):
+        show= True
+    if show:
+        print(values[i])
+    keys.append(values[i]["key"])
+    vars.append(values[i]["var"])
+    means.append(values[i]["mean"])
+width = 1/1.5
+plt.bar(keys, vars,width, color="blue")
+plt.show()
+
+

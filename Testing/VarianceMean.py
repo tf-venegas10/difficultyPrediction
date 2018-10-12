@@ -41,20 +41,20 @@ for key in features.keys():
         print(key)
         mean=np.mean(features[key])
         var= np.var(features[key])
-        values.append({"key":key, "mean": mean, "var" :var})
+        values.append({"key":key, "mean": mean, "var" :var, "disp": var/mean})
 
-values= sorted(values, key=lambda k: k['var'])
+values= sorted(values, key=lambda k: k['disp'])
 vars=[]
 means=[]
 keys=[]
 show=False
 for i in xrange(len(values)):
-    if(values[i]["key"]=="WORDS_PER_MINUTE"):
+    if(values[i]["key"]=="VIDEO_DURATION"):
         show= True
     if show:
         print(values[i])
     keys.append(values[i]["key"])
-    vars.append(values[i]["var"])
+    vars.append(values[i]["disp"])
     means.append(values[i]["mean"])
 width = 1/1.5
 plt.bar(keys, vars,width, color="blue")

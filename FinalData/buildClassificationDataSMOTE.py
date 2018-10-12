@@ -33,7 +33,7 @@ else:
     csvTraining = open("classificationData_SMOTE.csv", "w")
     csvTestSet = open("testSetClassification_SMOTE.csv", "w")
 
-cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION<>0")
+cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION_AMOUNT<>0")
 temp = {}
 videos = {}
 for row in cur.fetchall():
@@ -50,12 +50,7 @@ for row in cur.fetchall():
     # else:
     #     videos[row[0]]["qualification"] = "very easy"
 
-    if (float(row[1]) < 2.34):
-        temp[row[0]]["qualification"] = "difficult"
-    elif (float(row[1]) < 3.67):
-        temp[row[0]]["qualification"] = "intermediate"
-    else:
-        temp[row[0]]["qualification"] = "easy"
+    temp[row[0]]["qualification"] = row[1]
 
 cur.execute("SELECT FV.video_id, name, value, qualification " +
             "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID " +

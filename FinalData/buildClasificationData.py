@@ -155,7 +155,9 @@ for k in xrange(1000):
     csvTestSet.close()
     csvTraining.close()
 
-experiment = open("/Testing/reparticion.csv","w")
+experiment = open("Testing/reparticion.csv","w+")
 experiment.write("Experiment#;Easy_Training; NotEasy_Training; Easy_Testing; NotEasy_Testing\n")
 for i in xrange(len(testingNotEasy)):
-    experiment.write(str(i)+";"+str(trainingEasy)+";"+ str(trainingNotEasy)+ ";" + str(testingEasy)+ ";" + str(testingNotEasy)+ "\n")
+    experiment.write(str(i)+";"+str(trainingEasy[i])+";"+ str(trainingNotEasy[i])+ ";" + str(testingEasy[i])+ ";" + str(testingNotEasy[i])+ "\n")
+
+experiment.close()

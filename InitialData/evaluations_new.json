@@ -8850,8 +8850,8 @@
             "endTime": 273.817
           }
         ],
-        "startTime": null,
-        "endTime": 1.536881469439e+12,
+        "startTime": 1.536881469439e+12,
+        "endTime": 1.536881479439e+12,
         "user": "Esteban"
       },
       {
@@ -8877,7 +8877,7 @@
             "endTime": 401.028
           }
         ],
-        "startTime": null,
+        "startTime": 1.536881472839e+12,
         "endTime": 1.536881482839e+12,
         "user": "Esteban"
       },
@@ -8920,7 +8920,7 @@
             "endTime": 345.583
           }
         ],
-        "startTime": null,
+        "startTime": 1.536881479569e+12,
         "endTime": 1.536881490569e+12,
         "user": "Esteban"
       }

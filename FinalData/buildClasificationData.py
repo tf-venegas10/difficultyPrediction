@@ -121,7 +121,7 @@ for k in xrange(1000):
                     if feature != "qualification":
                         features.append(feature)
             theseFeatures = []
-            if is_test and len(xTestFeatures) < len(videos.keys()):
+            if is_test and len(xTestFeatures) < len(videos.keys())*0.3:
                 is_test = False
                 for feature in features:
                     theseFeatures.append(videos[index][feature])

@@ -8,7 +8,7 @@ testingNotEasy = []
 trainingEasy = []
 trainingNotEasy = []
 
-for k in xrange(2):
+for k in xrange(1000):
     arg = sys.argv[1]
     exclusive = False
     if arg == 'true':
@@ -31,11 +31,11 @@ for k in xrange(2):
     csvTraining = None
     csvTestSet = None
     if exclusive:
-        csvTraining = open("FinalData/classificationDataExclusive.csv", "w")
-        csvTestSet = open("FinalData/testSetClassificationExclusive.csv", "w")
+        csvTraining = open("../FinalData/classificationDataExclusive.csv", "w")
+        csvTestSet = open("../FinalData/testSetClassificationExclusive.csv", "w")
     else:
-        csvTraining = open("FinalData/classificationData.csv", "w")
-        csvTestSet = open("FinalData/testSetClassification.csv", "w")
+        csvTraining = open("../FinalData/classificationData.csv", "w")
+        csvTestSet = open("../FinalData/testSetClassification.csv", "w")
 
     cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION_AMOUNT<>0");
     temp = {}
@@ -178,8 +178,9 @@ for k in xrange(2):
     cur.close()
     csvTestSet.close()
     csvTraining.close()
+    print str(k)+"/1000"
 
-experiment = open("Testing/reparticion.csv", "w+")
+experiment = open("../Testing/reparticion.csv", "w+")
 experiment.write("Experiment#;Easy_Training; NotEasy_Training; Easy_Testing; NotEasy_Testing\n")
 for i in xrange(len(testingNotEasy)):
     experiment.write(

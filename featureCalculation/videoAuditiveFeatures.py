@@ -11,7 +11,7 @@ from pyAudioAnalysis import audioFeatureExtraction
 def convert_video_to_wav(path):
     if os.path.exists("../InitialData/audio.wav"):
         os.remove("../InitialData/audio.wav")
-    command = "ffmpeg -i " + path + " -ab 160k -ac 1 -ar 44100 -vn ../InitialData/audio.wav"
+    command = 'ffmpeg -i "' + path.replace("\\", "/") + '" -ab 160k -ac 1 -ar 44100 -vn ../InitialData/audio.wav'
     subprocess.call(command, shell=True)
 
 
@@ -28,10 +28,6 @@ def extract_audio_features():
         features[names[i]] = numpy.mean(values[i])
     return features
 
-
-convert_video_to_wav("")
-feat = extract_audio_features()
-print feat
 
 db = MySQLdb.connect(host="localhost",  # your host, usually localhost
                      user="root",  # your username
@@ -80,21 +76,23 @@ for subdir, dirs, files in os.walk(rootdir):
         if file.endswith(".mp4"):
             route = os.path.join(subdir, file)
             name = route.replace("\\", "/")
-            print(name)
+            # print(name)
             for key in vids.keys():
                 # if not key.endswith(".mp4"):
                 # print("THIS IS KEY: " + key)
                 if name.startswith(key):
                     text = [""]
                     counti = 0
+                    print vid_path
                     convert_video_to_wav(vid_path)
                     features = extract_audio_features()
                     featID = 51
                     for fet in sorted(features.keys()):
-                        output = open(fet + ".sql", 'a')
+                        output = open("Video_" + fet + ".sql", 'a')
                         val = features[fet]
                         output.write(
-                            "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (" + featID + ", " + str(
+                            "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (" + str(
+                                featID) + ", " + str(
                                 vids[key]) + ", " + str(val) + " );\n")
                         output.close()
                         featID += 1

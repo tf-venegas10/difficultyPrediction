@@ -1,247 +1,64 @@
 Feature;Dispersion index
-VIDEO_AVERAGE_HUE;0,1058
-VIDEO_SPECTRAL_CENTROID;0,049
-VIDEO_SPECTRAL_SPREAD;0,0437
-VIDEO_AVERAGE_BRIGHTNESS;0,0365
-VIDEO_MFCC_5;0,0327
-VIDEO_ENERGY;0,0306
-VIDEO_MFCC_10;0,0304
-VIDEO_DURATION;0,0283
-VIDEO_CHROMA_2;0,0264
-VIDEO_MFCC_2;0,0261
-VIDEO_CHROMA_8;0,0261
-VIDEO_MFCC_6;0,0258
-VIDEO_MFCC_11;0,0255
-VIDEO_MFCC_1;0,0237
-VIDEO_CHROMA_9;0,0226
-programming:abstractmethod;0,0222
-VIDEO_CHROMA_3;0,0207
-VIDEO_CHROMA_1;0,0173
-VIDEO_WORDS_COUNT;0,0171
-VIDEO_CHROMA_12;0,0165
-VIDEO_CHROMA_10;0,016
-VIDEO_MFCC_13;0,0154
-VIDEO_AVERAGE_SATURATION;0,0152
-VIDEO_MFCC_12;0,015
-VIDEO_ENERGY_ENTROPY;0,0143
-VIDEO_CHROMA_STD;0,0137
-VIDEO_SPECTRAL_FLUX;0,0132
-VIDEO_MFCC_4;0,0122
-VIDEO_CHROMA_7;0,0121
-VIDEO_CHROMA_6;0,0119
-NOUN_PHRASES_AMOUNT;0,0119
-programming:machine-learning;0,0109
-VIDEO_NOUN_PHRASES;0,0108
-VIDEO_DIFFICULT_WORDS;0,01
-VIDEO_SPECTRAL_ROLLOFF;0,0098
-VIDEO_CHROMA_4;0,0089
-WORDS_PER_MINUTE;0,0087
-UNCOMMON WORDS RATIO;0,0082
-FLESCH_KINCAID_GRADE;0,0081
-programming:forloop;0,0069
-VIDEO_SPECTRAL_ENTROPY;0,0065
-VIDEO_AVERAGE_COLORFULNESS;0,006
-programming:assertion;0,0059
-VIDEO_CHROMA_11;0,0058
-DIFFICULT_WORDS_AMOUNT;0,0056
-WORD_AMOUNT;0,0053
-programming:Encapsulation;0,0052
-FLESCH_READING_EASE;0,0052
-linked list;0,005
-SPEECH_DISPLAY_WORDS_RATIO;0,0049
-VIDEO_MFCC_7;0,0043
-programming:database;0,0041
-VIDEO_CHROMA_5;0,0041
-AUTOMATED_VIDEO_READABILITY_INDEX;0,004
-programming:generics;0,0039
-VIDEO_ZCR;0,0036
-programming:binaryoperator;0,0031
-WORDS_PER_MINUTE_WHOLE;0,003
-VIDEO_MFCC_9;0,0028
-EASY_VIDEO_READ;0,0027
-programming:sorting;0,0026
-programming:ExceptionHandling;0,0026
-private method;0,0026
-programming:character;0,0025
-VIDEO_MFCC_3;0,0025
-programming:instanceattribute;0,0024
-VIDEO_AVERAGE_LIGHT_EXPOSURE;0,0024
-ruby;0,0023
-programming:mapreduce;0,0023
-WORDS_PER_MINUTE_WHOLE_VIDEO;0,0023
-programming:constructor;0,0021
-PHRASES_AMOUNT;0,002
-AUTOMATED_READABILITY_INDEX;0,002
-programming:artificial intelligence;0,0014
-public method;0,0013
-programming:arraycreation;0,0013
-local scope;0,0013
-programming:structinitialization;0,0012
-programming:shortcircuitevaluation;0,0012
-programming:pointer;0,0012
-programming:composition;0,0012
-programming:array;0,0012
-mergesort;0,0012
-VIDEO_PHRASES_COUNT;0,0012
-programming:parameter;0,001
-programming:operator;0,001
-VIDEO_MFCC_8;0,001
-programming:string;0,0009
-programming:equalityoperator;0,0007
-FLESCH_KINCAID_VIDEO_GRADE;0,0003
-variable scope;0
-user interface;0
-typing method;0
-types;0
-type interface;0
-type inference;0
-type checking;0
-system integration;0
-subtyping;0
-string split;0
-string slice;0
-streams;0
-static typing;0
-standards;0
-sorting;0
-signatures;0
-semantics;0
-self type;0
-scratch;0
-python dictionary;0
-python;0
-public class;0
-protected method;0
-programming:whileloop;0
-programming:variableinitialization;0
-programming:variabledeclaration;0
-programming:this;0
-programming:synchronization;0
-programming:switch;0
-programming:structure;0
-programming:staticmethod;0
-programming:statement;0
-programming:stack;0
-programming:scope;0
-programming:return;0
-programming:repository;0
-programming:relationaloperator;0
-programming:referencetype;0
-programming:recursion;0
-programming:process;0
-programming:primitivetype;0
-programming:polymorphism;0
-programming:package;0
-programming:object;0
-programming:null;0
-programming:modifier;0
-programming:method;0
-programming:memorymanagement;0
-programming:loop;0
-programming:logicaloperator;0
-programming:list;0
-programming:lambdaexpression;0
-programming:iot;0
-programming:interface;0
-programming:instantiation;0
-programming:initialization;0
-programming:inheritance;0
-programming:import;0
-programming:if;0
-programming:headers;0
-programming:graph;0
-programming:git;0
-programming:generictype;0
-programming:functiondefinition;0
-programming:finalclass;0
-programming:expression;0
-programming:exceptionhandling;0
-programming:equality;0
-programming:enum;0
-programming:entity;0
-programming:enhancedforloop;0
-programming:encoding;0
-programming:encapsulation;0
-programming:dowhileloop;0
-programming:datawarehouse;0
-programming:controlflow;0
-programming:continue;0
-programming:constructorinvocation;0
-programming:conditionaloperator;0
-programming:condition;0
-programming:concurrency;0
-programming:comment;0
-programming:classattribute;0
-programming:class;0
-programming:checkedexception;0
-programming:casting;0
-programming:callbyvalue;0
-programming:callbyreference;0
-programming:break;0
-programming:boolean;0
-programming:bitwiseoperator;0
-programming:bitmap;0
-programming:attributedeclaration;0
-programming:attribute;0
-programming:assignmentoperator;0
-programming:assignment;0
-programming:arrayaccess;0
-programming:arithmeticoperator;0
-programming:anonymousclass;0
-programming:WhileLoop;0
-programming:VariableDeclaration;0
-programming:Polymorphism;0
-programming:Object;0
-programming:Interface;0
-programming:Inheritance;0
-programming:If;0
-programming:ForLoop;0
-programming:Class;0
-programming:Array;0
-private class;0
-pojo;0
-performance;0
-overriding;0
-overloading;0
-optimization;0
-object layout;0
-nesting;0
-nested function;0
-multidimensional arrays;0
-ml;0
-matlab;0
-math:vector;0
-main method;0
-logical expressions;0
-local variables;0
-local variable;0
-list comprehension;0
-list;0
-lexical scope;0
-let expression;0
-java virtual machine heap;0
-java;0
-interpreter;0
-inheritance;0
-indices;0
-function;0
-explain how arrays work in ruby as opposed to other languages by highlighting its differences;0
-english;0
-dynamic typing;0
-dynamic classes;0
-dictionary;0
-compilers;0
-compiler;0
-comparable interface;0
-coercions;0
-class initialization;0
-c++;0
-c#;0
-c;0
-association;0
-algorithms;0
-abstract class;0
+VIDEO_SPECTRAL_CENTROID;0,1116
+VIDEO_SPECTRAL_SPREAD;0,0631
+VIDEO_AVERAGE_HUE;0,0631
+VIDEO_MFCC_10;0,043
+VIDEO_CHROMA_1;0,0344
+VIDEO_MFCC_13;0,0338
+VIDEO_DURATION;0,0286
+WORDS_PER_MINUTE;0,0283
+VIDEO_CHROMA_STD;0,0256
+VIDEO_CHROMA_4;0,0255
+VIDEO_ENERGY;0,025
+VIDEO_MFCC_1;0,0245
+VIDEO_SPECTRAL_FLUX;0,0242
+NOUN_PHRASES_AMOUNT;0,0232
+VIDEO_AVERAGE_SATURATION;0,0206
+VIDEO_MFCC_2;0,0203
+VIDEO_CHROMA_12;0,0201
+VIDEO_DIFFICULT_WORDS;0,0187
+VIDEO_CHROMA_7;0,0187
+UNCOMMON WORDS RATIO;0,0174
+VIDEO_MFCC_7;0,0171
+VIDEO_MFCC_4;0,0169
+VIDEO_WORDS_COUNT;0,0162
+VIDEO_ZCR;0,0152
+WORDS_PER_MINUTE_WHOLE_VIDEO;0,0147
+VIDEO_CHROMA_9;0,0136
+VIDEO_CHROMA_2;0,0134
+VIDEO_MFCC_6;0,0125
+VIDEO_MFCC_5;0,0119
+VIDEO_AVERAGE_LIGHT_EXPOSURE;0,0118
+VIDEO_PHRASES_COUNT;0,0117
+EASY_VIDEO_READ;0,0113
+VIDEO_CHROMA_3;0,011
+FLESCH_READING_EASE;0,0104
+VIDEO_CHROMA_8;0,0103
+AUTOMATED_READABILITY_INDEX;0,009
+VIDEO_MFCC_8;0,0088
+VIDEO_ENERGY_ENTROPY;0,0086
+VIDEO_CHROMA_10;0,0082
+VIDEO_CHROMA_11;0,0077
+VIDEO_MFCC_3;0,0069
+WORD_AMOUNT;0,0068
+FLESCH_KINCAID_VIDEO_GRADE;0,0068
+UNCOMMON WORDS AMOUNT;0,0067
+AUTOMATED_VIDEO_READABILITY_INDEX;0,0057
+PHRASES_AMOUNT;0,0055
+VIDEO_AVERAGE_COLORFULNESS;0,0054
+VIDEO_SPECTRAL_ROLLOFF;0,0053
+VIDEO_NOUN_PHRASES;0,0048
+VIDEO_CHROMA_6;0,0047
+VIDEO_MFCC_9;0,0046
+SPEECH_DISPLAY_WORDS_RATIO;0,0041
+DIFFICULT_WORDS_AMOUNT;0,0041
+VIDEO_SPECTRAL_ENTROPY;0,0032
+VIDEO_MFCC_11;0,003
+VIDEO_CHROMA_5;0,0027
+VIDEO_MFCC_12;0,0024
+VIDEO_AVERAGE_BRIGHTNESS;0,0024
+WORDS_PER_MINUTE_WHOLE;0,0018
+FLESCH_KINCAID_GRADE;0,0018
+VIDEO_DOMINANT_COLOR;0,0011
 VIDEO_SIZE;0
-VIDEO_DOMINANT_COLOR;0
 VIDEO_ASPECT_RATIO;0
-UNCOMMON WORDS AMOUNT;0

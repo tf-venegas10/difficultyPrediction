@@ -94,8 +94,9 @@ for subdir, dirs, files in os.walk(rootdir):
                         output = open(fet + ".sql", 'a')
                         val = features[fet]
                         output.write(
-                            "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES ("+featID+", " + str(
+                            "INSERT INTO FEATURES_PER_VIDEO (feature_id, video_id, value) VALUES (" + featID + ", " + str(
                                 vids[key]) + ", " + str(val) + " );\n")
                         output.close()
+                        featID += 1
                     processed = processed + 1
                     print("Processed: " + str(processed) + "/" + str(vids_amount))

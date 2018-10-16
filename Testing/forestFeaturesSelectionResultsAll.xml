@@ -1,0 +1,1047 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <LastAuthor>Thomas Venegas</LastAuthor>
+  <Created>2018-10-16T23:10:44Z</Created>
+  <Version>16.00</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <AllowPNG/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>6300</WindowHeight>
+  <WindowWidth>19200</WindowWidth>
+  <WindowTopX>32767</WindowTopX>
+  <WindowTopY>32767</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:Family="Swiss" ss:Size="11" ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="forestFeaturesSelectionResults">
+  <Table ss:ExpandedColumnCount="2" ss:ExpandedRowCount="247" x:FullColumns="1"
+   x:FullRows="1" ss:DefaultColumnWidth="60" ss:DefaultRowHeight="14.5">
+   <Column ss:Width="435"/>
+   <Column ss:Width="80.5"/>
+   <Row>
+    <Cell><Data ss:Type="String">Feature</Data></Cell>
+    <Cell><Data ss:Type="String">Dispersion index</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_AVERAGE_HUE</Data></Cell>
+    <Cell><Data ss:Type="Number">0.10580000000000001</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_SPECTRAL_CENTROID</Data></Cell>
+    <Cell><Data ss:Type="Number">4.9000000000000002E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_SPECTRAL_SPREAD</Data></Cell>
+    <Cell><Data ss:Type="Number">4.3700000000000003E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_AVERAGE_BRIGHTNESS</Data></Cell>
+    <Cell><Data ss:Type="Number">3.6499999999999998E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_MFCC_5</Data></Cell>
+    <Cell><Data ss:Type="Number">3.27E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_ENERGY</Data></Cell>
+    <Cell><Data ss:Type="Number">3.0599999999999999E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_MFCC_10</Data></Cell>
+    <Cell><Data ss:Type="Number">3.04E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_DURATION</Data></Cell>
+    <Cell><Data ss:Type="Number">2.8299999999999999E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_CHROMA_2</Data></Cell>
+    <Cell><Data ss:Type="Number">2.64E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_MFCC_2</Data></Cell>
+    <Cell><Data ss:Type="Number">2.6100000000000002E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_CHROMA_8</Data></Cell>
+    <Cell><Data ss:Type="Number">2.6100000000000002E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_MFCC_6</Data></Cell>
+    <Cell><Data ss:Type="Number">2.58E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_MFCC_11</Data></Cell>
+    <Cell><Data ss:Type="Number">2.5499999999999998E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_MFCC_1</Data></Cell>
+    <Cell><Data ss:Type="Number">2.3699999999999999E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_CHROMA_9</Data></Cell>
+    <Cell><Data ss:Type="Number">2.2599999999999999E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:abstractmethod</Data></Cell>
+    <Cell><Data ss:Type="Number">2.2200000000000001E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_CHROMA_3</Data></Cell>
+    <Cell><Data ss:Type="Number">2.07E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_CHROMA_1</Data></Cell>
+    <Cell><Data ss:Type="Number">1.7299999999999999E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_WORDS_COUNT</Data></Cell>
+    <Cell><Data ss:Type="Number">1.7100000000000001E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_CHROMA_12</Data></Cell>
+    <Cell><Data ss:Type="Number">1.6500000000000001E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_CHROMA_10</Data></Cell>
+    <Cell><Data ss:Type="Number">1.6E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_MFCC_13</Data></Cell>
+    <Cell><Data ss:Type="Number">1.54E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_AVERAGE_SATURATION</Data></Cell>
+    <Cell><Data ss:Type="Number">1.52E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_MFCC_12</Data></Cell>
+    <Cell><Data ss:Type="Number">1.4999999999999999E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_ENERGY_ENTROPY</Data></Cell>
+    <Cell><Data ss:Type="Number">1.43E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_CHROMA_STD</Data></Cell>
+    <Cell><Data ss:Type="Number">1.37E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_SPECTRAL_FLUX</Data></Cell>
+    <Cell><Data ss:Type="Number">1.32E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_MFCC_4</Data></Cell>
+    <Cell><Data ss:Type="Number">1.2200000000000001E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_CHROMA_7</Data></Cell>
+    <Cell><Data ss:Type="Number">1.21E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_CHROMA_6</Data></Cell>
+    <Cell><Data ss:Type="Number">1.1900000000000001E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">NOUN_PHRASES_AMOUNT</Data></Cell>
+    <Cell><Data ss:Type="Number">1.1900000000000001E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:machine-learning</Data></Cell>
+    <Cell><Data ss:Type="Number">1.09E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_NOUN_PHRASES</Data></Cell>
+    <Cell><Data ss:Type="Number">1.0800000000000001E-2</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_DIFFICULT_WORDS</Data></Cell>
+    <Cell><Data ss:Type="Number">0.01</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_SPECTRAL_ROLLOFF</Data></Cell>
+    <Cell><Data ss:Type="Number">9.7999999999999997E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_CHROMA_4</Data></Cell>
+    <Cell><Data ss:Type="Number">8.8999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">WORDS_PER_MINUTE</Data></Cell>
+    <Cell><Data ss:Type="Number">8.6999999999999994E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">UNCOMMON WORDS RATIO</Data></Cell>
+    <Cell><Data ss:Type="Number">8.2000000000000007E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">FLESCH_KINCAID_GRADE</Data></Cell>
+    <Cell><Data ss:Type="Number">8.0999999999999996E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:forloop</Data></Cell>
+    <Cell><Data ss:Type="Number">6.8999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_SPECTRAL_ENTROPY</Data></Cell>
+    <Cell><Data ss:Type="Number">6.4999999999999997E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_AVERAGE_COLORFULNESS</Data></Cell>
+    <Cell><Data ss:Type="Number">6.0000000000000001E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:assertion</Data></Cell>
+    <Cell><Data ss:Type="Number">5.8999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_CHROMA_11</Data></Cell>
+    <Cell><Data ss:Type="Number">5.7999999999999996E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">DIFFICULT_WORDS_AMOUNT</Data></Cell>
+    <Cell><Data ss:Type="Number">5.5999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">WORD_AMOUNT</Data></Cell>
+    <Cell><Data ss:Type="Number">5.3E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:Encapsulation</Data></Cell>
+    <Cell><Data ss:Type="Number">5.1999999999999998E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">FLESCH_READING_EASE</Data></Cell>
+    <Cell><Data ss:Type="Number">5.1999999999999998E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">linked list</Data></Cell>
+    <Cell><Data ss:Type="Number">5.0000000000000001E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">SPEECH_DISPLAY_WORDS_RATIO</Data></Cell>
+    <Cell><Data ss:Type="Number">4.8999999999999998E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_MFCC_7</Data></Cell>
+    <Cell><Data ss:Type="Number">4.3E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:database</Data></Cell>
+    <Cell><Data ss:Type="Number">4.1000000000000003E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_CHROMA_5</Data></Cell>
+    <Cell><Data ss:Type="Number">4.1000000000000003E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">AUTOMATED_VIDEO_READABILITY_INDEX</Data></Cell>
+    <Cell><Data ss:Type="Number">4.0000000000000001E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:generics</Data></Cell>
+    <Cell><Data ss:Type="Number">3.8999999999999998E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_ZCR</Data></Cell>
+    <Cell><Data ss:Type="Number">3.5999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:binaryoperator</Data></Cell>
+    <Cell><Data ss:Type="Number">3.0999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">WORDS_PER_MINUTE_WHOLE</Data></Cell>
+    <Cell><Data ss:Type="Number">3.0000000000000001E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_MFCC_9</Data></Cell>
+    <Cell><Data ss:Type="Number">2.8E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">EASY_VIDEO_READ</Data></Cell>
+    <Cell><Data ss:Type="Number">2.7000000000000001E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:sorting</Data></Cell>
+    <Cell><Data ss:Type="Number">2.5999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:ExceptionHandling</Data></Cell>
+    <Cell><Data ss:Type="Number">2.5999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">private method</Data></Cell>
+    <Cell><Data ss:Type="Number">2.5999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:character</Data></Cell>
+    <Cell><Data ss:Type="Number">2.5000000000000001E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_MFCC_3</Data></Cell>
+    <Cell><Data ss:Type="Number">2.5000000000000001E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:instanceattribute</Data></Cell>
+    <Cell><Data ss:Type="Number">2.3999999999999998E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_AVERAGE_LIGHT_EXPOSURE</Data></Cell>
+    <Cell><Data ss:Type="Number">2.3999999999999998E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ruby</Data></Cell>
+    <Cell><Data ss:Type="Number">2.3E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:mapreduce</Data></Cell>
+    <Cell><Data ss:Type="Number">2.3E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">WORDS_PER_MINUTE_WHOLE_VIDEO</Data></Cell>
+    <Cell><Data ss:Type="Number">2.3E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:constructor</Data></Cell>
+    <Cell><Data ss:Type="Number">2.0999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">PHRASES_AMOUNT</Data></Cell>
+    <Cell><Data ss:Type="Number">2E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">AUTOMATED_READABILITY_INDEX</Data></Cell>
+    <Cell><Data ss:Type="Number">2E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:artificial intelligence</Data></Cell>
+    <Cell><Data ss:Type="Number">1.4E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">public method</Data></Cell>
+    <Cell><Data ss:Type="Number">1.2999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:arraycreation</Data></Cell>
+    <Cell><Data ss:Type="Number">1.2999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">local scope</Data></Cell>
+    <Cell><Data ss:Type="Number">1.2999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:structinitialization</Data></Cell>
+    <Cell><Data ss:Type="Number">1.1999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:shortcircuitevaluation</Data></Cell>
+    <Cell><Data ss:Type="Number">1.1999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:pointer</Data></Cell>
+    <Cell><Data ss:Type="Number">1.1999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:composition</Data></Cell>
+    <Cell><Data ss:Type="Number">1.1999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:array</Data></Cell>
+    <Cell><Data ss:Type="Number">1.1999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">mergesort</Data></Cell>
+    <Cell><Data ss:Type="Number">1.1999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_PHRASES_COUNT</Data></Cell>
+    <Cell><Data ss:Type="Number">1.1999999999999999E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:parameter</Data></Cell>
+    <Cell><Data ss:Type="Number">1E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:operator</Data></Cell>
+    <Cell><Data ss:Type="Number">1E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_MFCC_8</Data></Cell>
+    <Cell><Data ss:Type="Number">1E-3</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:string</Data></Cell>
+    <Cell><Data ss:Type="Number">8.9999999999999998E-4</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:equalityoperator</Data></Cell>
+    <Cell><Data ss:Type="Number">6.9999999999999999E-4</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">FLESCH_KINCAID_VIDEO_GRADE</Data></Cell>
+    <Cell><Data ss:Type="Number">2.9999999999999997E-4</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">variable scope</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">user interface</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">typing method</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">types</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">type interface</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">type inference</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">type checking</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">system integration</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">subtyping</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">string split</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">string slice</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">streams</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">static typing</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">standards</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">sorting</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">signatures</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">semantics</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">self type</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">scratch</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">python dictionary</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">python</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">public class</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">protected method</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:whileloop</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:variableinitialization</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:variabledeclaration</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:this</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:synchronization</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:switch</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:structure</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:staticmethod</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:statement</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:stack</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:scope</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:return</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:repository</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:relationaloperator</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:referencetype</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:recursion</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:process</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:primitivetype</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:polymorphism</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:package</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:object</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:null</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:modifier</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:method</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:memorymanagement</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:loop</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:logicaloperator</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:list</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:lambdaexpression</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:iot</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:interface</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:instantiation</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:initialization</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:inheritance</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:import</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:if</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:headers</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:graph</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:git</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:generictype</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:functiondefinition</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:finalclass</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:expression</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:exceptionhandling</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:equality</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:enum</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:entity</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:enhancedforloop</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:encoding</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:encapsulation</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:dowhileloop</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:datawarehouse</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:controlflow</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:continue</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:constructorinvocation</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:conditionaloperator</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:condition</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:concurrency</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:comment</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:classattribute</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:class</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:checkedexception</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:casting</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:callbyvalue</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:callbyreference</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:break</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:boolean</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:bitwiseoperator</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:bitmap</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:attributedeclaration</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:attribute</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:assignmentoperator</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:assignment</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:arrayaccess</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:arithmeticoperator</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:anonymousclass</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:WhileLoop</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:VariableDeclaration</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:Polymorphism</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:Object</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:Interface</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:Inheritance</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:If</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:ForLoop</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:Class</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">programming:Array</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">private class</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">pojo</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">performance</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">overriding</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">overloading</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">optimization</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">object layout</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">nesting</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">nested function</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">multidimensional arrays</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">ml</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">matlab</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">math:vector</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">main method</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">logical expressions</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">local variables</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">local variable</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">list comprehension</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">list</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">lexical scope</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">let expression</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">java virtual machine heap</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">java</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">interpreter</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">inheritance</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">indices</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">function</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">explain how arrays work in ruby as opposed to other languages by highlighting its differences</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">english</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">dynamic typing</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">dynamic classes</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">dictionary</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">compilers</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">compiler</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">comparable interface</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">coercions</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">class initialization</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">c++</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">c#</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">c</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">association</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">algorithms</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">abstract class</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_SIZE</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_DOMINANT_COLOR</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">VIDEO_ASPECT_RATIO</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+   <Row>
+    <Cell><Data ss:Type="String">UNCOMMON WORDS AMOUNT</Data></Cell>
+    <Cell><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.3"/>
+    <Footer x:Margin="0.3"/>
+    <PageMargins x:Bottom="0.75" x:Left="0.7" x:Right="0.7" x:Top="0.75"/>
+   </PageSetup>
+   <Selected/>
+   <TopRowVisible>65</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>36</ActiveRow>
+     <ActiveCol>4</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

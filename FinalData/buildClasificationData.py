@@ -31,13 +31,13 @@ for k in xrange(1000):
     csvTraining = None
     csvTestSet = None
     if exclusive:
-        csvTraining = open("FinalData/classificationDataExclusive.csv", "w")
-        csvTestSet = open("FinalData/testSetClassificationExclusive.csv", "w")
+        csvTraining = open("../FinalData/classificationDataExclusive.csv", "w")
+        csvTestSet = open("../FinalData/testSetClassificationExclusive.csv", "w")
     else:
-        csvTraining = open("FinalData/classificationData.csv", "w")
-        csvTestSet = open("FinalData/testSetClassification.csv", "w")
+        csvTraining = open("../FinalData/classificationData.csv", "w")
+        csvTestSet = open("../FinalData/testSetClassification.csv", "w")
 
-    cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION_AMOUNT<>0");
+    cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION_AMOUNT<>0;")
     temp = {}
     videos = {}
     for row in cur.fetchall():
@@ -91,25 +91,49 @@ for k in xrange(1000):
     yScore = []
     xTestFeatures = []
     yTestScore = []
-    for key in videos.keys():
-        print(i)
-        if toDo:
-            toDo = False
-            for feature in videos[key].keys():
-                if feature != "qualification":
-                    features.append(feature)
-        theseFeatures = []
-        if (random.random() < 0.3):
-            for feature in features:
-                theseFeatures.append(videos[key][feature])
-            xTestFeatures.append(theseFeatures)
-            yTestScore.append(videos[key]["qualification"])
-        else:
-            for feature in features:
-                theseFeatures.append(videos[key][feature])
-            xFeatures.append(theseFeatures)
-            yScore.append(videos[key]["qualification"])
-        i += 1
+    # for key in videos.keys():
+    #     print(i)
+    #     if toDo:
+    #         toDo = False
+    #         for feature in videos[key].keys():
+    #             if feature != "qualification":
+    #                 features.append(feature)
+    #     theseFeatures = []
+    #     if (random.random() < 0.3):
+    #         for feature in features:
+    #             theseFeatures.append(videos[key][feature])
+    #         xTestFeatures.append(theseFeatures)
+    #         yTestScore.append(videos[key]["qualification"])
+    #     else:
+    #         for feature in features:
+    #             theseFeatures.append(videos[key][feature])
+    #         xFeatures.append(theseFeatures)
+    #         yScore.append(videos[key]["qualification"])
+    #     i += 1
+    keys_used = []
+    is_test = True
+    while len(keys_used) != len(videos.keys()):
+        index = random.randint(1, 6000)
+        if index in videos.keys() and index not in keys_used:
+            if toDo:
+                toDo = False
+                for feature in videos[index].keys():
+                    if feature != "qualification":
+                        features.append(feature)
+            theseFeatures = []
+            if is_test and len(xTestFeatures) < len(videos.keys())*0.3:
+                is_test = False
+                for feature in features:
+                    theseFeatures.append(videos[index][feature])
+                xTestFeatures.append(theseFeatures)
+                yTestScore.append(videos[index]["qualification"])
+            else:
+                is_test = True
+                for feature in features:
+                    theseFeatures.append(videos[index][feature])
+                xFeatures.append(theseFeatures)
+                yScore.append(videos[index]["qualification"])
+            keys_used.append(index)
 
     x_Features_res, y_Score_res = (xFeatures, yScore)
     print("total lenght: " + str(len(y_Score_res)))
@@ -131,7 +155,7 @@ for k in xrange(1000):
         i += 1
     print("There are " + str(i) + " videos on the training set (no-SMOTE was applied)")
     trainingEasy.append(numberOfEasy)
-    trainingNotEasy.append(i-numberOfEasy)
+    trainingNotEasy.append(i - numberOfEasy)
     numberOfEasy = 0
     i = 0
     for video in xTestFeatures:
@@ -143,7 +167,7 @@ for k in xrange(1000):
         i += 1
     print("There are " + str(i) + " videos on the testing set (no SMOTE- original videos)")
     testingEasy.append(numberOfEasy)
-    testingNotEasy.append(i-numberOfEasy)
+    testingNotEasy.append(i - numberOfEasy)
 
     object = json.dumps(results)
     # file.write(object)
@@ -154,10 +178,13 @@ for k in xrange(1000):
     cur.close()
     csvTestSet.close()
     csvTraining.close()
+    print str(k)+"/1000"
 
-experiment = open("Testing/reparticion.csv","w+")
+experiment = open("../Testing/reparticion.csv", "w+")
 experiment.write("Experiment#;Easy_Training; NotEasy_Training; Easy_Testing; NotEasy_Testing\n")
 for i in xrange(len(testingNotEasy)):
-    experiment.write(str(i)+";"+str(trainingEasy[i])+";"+ str(trainingNotEasy[i])+ ";" + str(testingEasy[i])+ ";" + str(testingNotEasy[i])+ "\n")
+    experiment.write(
+        str(i) + ";" + str(trainingEasy[i]) + ";" + str(trainingNotEasy[i]) + ";" + str(testingEasy[i]) + ";" + str(
+            testingNotEasy[i]) + "\n")
 
 experiment.close()

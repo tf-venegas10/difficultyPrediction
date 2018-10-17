@@ -13,10 +13,7 @@ def  getDataSet():
         videos[row[0]] = {}
         videos[row[0]]["VIDEOID"] = row[0]
 
-        if ((row[1]) == "Easy"):
-            videos[row[0]]["qualification"] = 0
-        else:
-            videos[row[0]]["qualification"] = 1
+        videos[row[0]]["qualification"] = row[1]
 
     cur.execute("SELECT FV.video_id, name, value, qualification " +
                 "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID " +

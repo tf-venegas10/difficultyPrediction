@@ -10,6 +10,7 @@ from CrossValidation import cross_validation
 from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import chi2
 from sklearn.feature_selection import RFECV
+from sklearn.externals import joblib
 
 
 X,Y,X_test,Y_test= getDataSet()
@@ -36,44 +37,68 @@ mlp = MLPClassifier(solver='lbfgs', alpha=1e-5,hidden_layer_sizes=(10, 2), rando
 models=[forest,gdBoost,mlp]
 names= ["Random Forest", "Gradient Boosting", "MuliLayer Perceptrons"]
 
+#Vars to select the best suited model
+bestModel = None
+bestName = "none"
+bestMean= 0.0
+x_best=[]
+
 ##Using all the features
 print("------------------------------------------")
 print("------All Features -----------------------")
-cross_validation(x_norm, y, models, names)
-
+model,name,mean=cross_validation(x_norm, y, models, names)
+if(mean>bestMean):
+    bestModel,bestName,bestMean=model,name,mean
+    x_best=x_norm
 
 ##Removing features with low variance
 print("------------------------------------------")
 print("------Removing features with low variance -----------------------")
 sel = VarianceThreshold(threshold=(0.01))
 x_case = sel.fit_transform(x_norm)
-cross_validation(x_case, y, models, names)
+model,name,mean=cross_validation(x_case, y, models, names)
+if(mean>bestMean):
+    bestModel,bestName,bestMean=model,name,mean
+    x_best = x_case
 
 ## Univariate feature selection
 print("------------------------------------------")
 print("------Univariate feature selection-----------------------")
 x_case = SelectKBest(chi2, k=2).fit_transform(x_norm, y)
-cross_validation(x_case, y, models, names)
+model,name,mean=cross_validation(x_case, y, models, names)
+if(mean>bestMean):
+    bestModel,bestName,bestMean=model,name,mean
+    x_best = x_case
 
 ##Recursive Elimination
 print("------------------------------------------")
 print("------Backwards Elimination-----------------------")
-selectorForest = RFECV(forest, step=1, cv=3)
-selectorForest = selectorForest.fit(x_norm,y)
-print("forest be done")
-selectorMLP = RFECV(mlp, step=1, cv=3)
-selectorMLP = selectorMLP.fit(x_norm,y)
-print("forest mlp done")
+
 selectorGB = RFECV(gdBoost, step=1, cv=3)
 selectorGB = selectorGB.fit(x_norm,y)
-print("forest gb done")
-cross_validation(x_norm,y,[selectorForest,selectorGB,selectorMLP], names)
+joblib.dump(selectorGB, 'BEGrandientBoosting.joblib')
+print(" gb done")
+selectorForest = RFECV(forest, step=1, cv=3)
+selectorForest = selectorForest.fit(x_norm,y)
+joblib.dump(selectorForest, 'BERandomForest.joblib')
+print("forest be done")
+#selectorMLP = RFECV(mlp, step=1, cv=3)
+#selectorMLP = selectorMLP.fit(x_norm,y)
+#print(" mlp done")
+model,name,mean=cross_validation(x_norm,y,[selectorForest,selectorGB], names)
+if(mean>bestMean):
+    bestModel,bestName,bestMean=model,name,mean
+    x_best = x_norm
 
+print("###########################################")
+print("The best model is: %s with and average accuracy of: %0.5f"%(bestName,bestMean))
+
+## Saving the best model
+joblib.dump(bestModel, "Best%s.joblib"%bestName)
 
 #train best suited model
-
-#forest.fit(x_norm,y)
-#gdBoost.fit(x_norm,y)
-#x_test_norm=preprocessing.normalize(X_test,"l2")
-#testScore = forest.score(x_test_norm,Y_test)
-#print("Best suited model %s, Testing set Accuracy: %0.2f" %("Random Forest",testScore))
+bestModel.fit(x_best,y)
+scaler.fit(X_test)
+x_test_norm=scaler.transform(X_test)
+testScore = bestModel.score(x_test_norm,Y_test)
+print("Best suited model %s, Testing set Accuracy: %0.5f" %(bestName,testScore))

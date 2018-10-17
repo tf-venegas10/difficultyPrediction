@@ -19,7 +19,7 @@ def  getDataSet():
     cur.execute("SELECT FV.video_id, name, value, qualification " +
                 "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID " +
                 "JOIN VIDEO_QUALIFICATION VQ ON FV.VIDEO_ID=VQ.VIDEO_ID " +
-                "WHERE QUALIFICATION_AMOUNT>2 AND FEATURE_ID<100;")
+                "WHERE QUALIFICATION_AMOUNT>2 ;")
 
     for row in cur.fetchall():
         videos[row[0]][row[1]] = row[2]
@@ -30,9 +30,7 @@ def  getDataSet():
     features = []
     xFeatures = []
     yScore = []
-    print(videos.keys())
     for key in videos.keys():
-        print(i)
         if toDo:
             toDo = False
             for feature in videos[key].keys():
@@ -47,5 +45,7 @@ def  getDataSet():
         i += 1
     X = np.array(xFeatures)
     Y = np.array(yScore)
+
     X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.25, random_state = 42)
-    return (X_train, X_test, y_train, y_test)
+
+    return (X_train, y_train, X_test, y_test)

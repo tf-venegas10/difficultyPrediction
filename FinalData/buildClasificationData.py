@@ -37,7 +37,7 @@ for k in xrange(1000):
         csvTraining = open("../FinalData/classificationData.csv", "w")
         csvTestSet = open("../FinalData/testSetClassification.csv", "w")
 
-    cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION_AMOUNT<>0");
+    cur.execute("SELECT * FROM VIDEO_QUALIFICATION WHERE QUALIFICATION_AMOUNT<>0;")
     temp = {}
     videos = {}
     for row in cur.fetchall():

@@ -11,7 +11,7 @@ from pyAudioAnalysis import audioFeatureExtraction
 def convert_video_to_wav(path):
     if os.path.exists("../InitialData/audio.wav"):
         os.remove("../InitialData/audio.wav")
-    command = "ffmpeg -i " + path + " -ab 160k -ac 1 -ar 44100 -vn ../InitialData/audio.wav"
+    command = 'ffmpeg -i "' + path + '" -ab 160k -ac 1 -ar 44100 -vn ../InitialData/audio.wav'
     subprocess.call(command, shell=True)
 
 

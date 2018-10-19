@@ -97,7 +97,7 @@ for video in videosQual:
 print("json processing done")
 
 for i in xrange(1,5841):
-    if videosQual[i]!={"Easy":0,"NotEasy":0}:
+    if videosQual[i]!= {"Easy":0,"NotEasy":0}:
         write.write("UPDATE VIDEO_QUALIFICATION SET QUALIFICATION='"+str(videosQual[i]["vote"])+"', QUALIFICATION_AMOUNT="+str(videosNumber[i])+" WHERE VIDEO_ID="+str(i)+";\n")
 
 

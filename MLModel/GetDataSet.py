@@ -1,7 +1,7 @@
 import MySQLdb
 import numpy as np
 from sklearn.model_selection import train_test_split
-def  getDataSet():
+def  getDataSet(maxFeatureId):
     db = MySQLdb.connect(host="localhost",  # your host, usually localhost
                          user="root",  # your username
                          passwd="tomasmarica",  # your password
@@ -19,7 +19,7 @@ def  getDataSet():
     cur.execute("SELECT FV.video_id, name, value, qualification " +
                 "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID " +
                 "JOIN VIDEO_QUALIFICATION VQ ON FV.VIDEO_ID=VQ.VIDEO_ID " +
-                "WHERE QUALIFICATION_AMOUNT>2 ;")
+                "WHERE QUALIFICATION_AMOUNT>2 AND FEATURE_ID<%0.0f;"%maxFeatureId)
 
     for row in cur.fetchall():
         videos[row[0]][row[1]] = row[2]

@@ -8,6 +8,7 @@ from pyAudioAnalysis import audioBasicIO
 from pyAudioAnalysis import audioFeatureExtraction
 
 
+# Function that converts mp4 video to wav file
 def convert_video_to_wav(path):
     if os.path.exists("../InitialData/audio.wav"):
         os.remove("../InitialData/audio.wav")
@@ -15,6 +16,7 @@ def convert_video_to_wav(path):
     subprocess.call(command, shell=True)
 
 
+# Function that extracts the audio features from a wav file with the pyAudioAnalysis library
 def extract_audio_features():
     [Fs, x] = audioBasicIO.readAudioFile("../InitialData/audio.wav")
     data = audioFeatureExtraction.stFeatureExtraction(x, Fs, 0.050 * Fs, 0.025 * Fs)
@@ -39,6 +41,7 @@ cur = db.cursor()
 
 ids = {}
 
+# Video paths are retrieved from the database
 cur.execute("SELECT * FROM learning_resources;")
 for row in cur.fetchall():
     path = row[2].replace(
@@ -67,6 +70,7 @@ ospath = ospath.replace("/featureCalculation", "")
 rootdir = "C:/Tesis ISIS/videosLu/frontend/public/Coursera"
 processed = 0
 
+# All directories in the dataset folder are visited in order to obtain the files
 for subdir, dirs, files in os.walk(rootdir):
     for file in files:
         vid_path = os.path.join(subdir, file)

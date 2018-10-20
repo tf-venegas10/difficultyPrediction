@@ -36,9 +36,7 @@ scaler.fit(x)
 x_norm = scaler.transform(x)
 
 # initialize models
-'''
-TO-DO: variate tunning parameters and evaluate the performance behaviour
-'''
+
 forest = RandomForestClassifier(n_estimators=100, max_depth=20, random_state=111)
 gdBoost = GradientBoostingClassifier(random_state=111)
 mlp = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=(10, 2), random_state=111)
@@ -86,10 +84,10 @@ if (mean > bestMean):
 # Univariate feature selection
 print("------------------------------------------")
 print("------Univariate feature selection-----------------------")
+
 '''
 TO-DO: variate k values in order to observe the behaviour of model performance and number of top features
 '''
-
 
 # Recursive Elimination
 print("------------------------------------------")

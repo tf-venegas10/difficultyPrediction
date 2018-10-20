@@ -5,7 +5,8 @@ from sklearn.model_selection import train_test_split
 
 
 # Function that gets the dataset of evaluated videos
-def  getDataSet(maxFeatureId):
+#PARAMS: minFeatureID, maxFeatureId minimum and maximum ids of the feautres that will be used (inclusive)
+def  getDataSet( minFeatureId=1, maxFeatureId =300):
     # The SQL database reference is initialized
     db = MySQLdb.connect(host="localhost",  # your host, usually localhost
                          user="root",  # your username
@@ -28,7 +29,7 @@ def  getDataSet(maxFeatureId):
     cur.execute("SELECT FV.video_id, name, value, qualification " +
                 "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID " +
                 "JOIN VIDEO_QUALIFICATION VQ ON FV.VIDEO_ID=VQ.VIDEO_ID " +
-                "WHERE QUALIFICATION_AMOUNT>2 AND FEATURE_ID<%0.0f;"%maxFeatureId)
+                "WHERE QUALIFICATION_AMOUNT>2 AND FEATURE_ID BETWEEN %0.0f and %0.0f;"%(minFeatureId,maxFeatureId))
 
     # In this loop the features and their values are added to the video dictionary
     for row in cur.fetchall():
@@ -68,6 +69,7 @@ def  getDataSet(maxFeatureId):
 # Function that gets the dataset of evaluated videos
 # PARAMS: featuers is an array of ids of the feautres that will be used (inclusive)
 def getDataSet(minFeatureId=1, maxFeatureId=300):
+
     # The SQL database reference is initialized
     db = MySQLdb.connect(host="localhost",  # your host, usually localhost
                          user="root",  # your username

@@ -12,7 +12,7 @@ from sklearn.feature_selection import RFECV
 from sklearn.externals import joblib
 from sklearn.metrics import recall_score
 
-X,Y,X_test,Y_test= getDataSet(100)
+X,Y,X_test,Y_test= getDataSet(1,300)
 # Get the dataset from the database
 X, Y, X_test, Y_test = getDataSet()
 easyCount = 0

@@ -1,6 +1,6 @@
 
 from sklearn import preprocessing
-from GetDataSet import getDataSet
+from GetDataSet import getDataSubSet
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.neural_network import MLPClassifier
@@ -13,135 +13,50 @@ from Validation import manual_cross_validation
 from sklearn import metrics as m
 
 #set that defines the different sets of features that will be used
-features = [{"init":1, "fin":6},]
+features = [[1,2,3,4,5,6,7,44],[x for x in xrange(8,15)],[31,32,33,34,45,50],[c for c in xrange(35,44)]]
 
-X,y,X_test,Y_test= getDataSet(1,300)
-## Count number of 'easy' labeled instances and total instances
-# This is done to keep control of the correct distribution of the dataset and the parameters of the experiment.
-easyCount = 0
-totalCount = 0
-for i in xrange(len(Y_test)):
-    if(Y_test[i]=="Easy"):
-        easyCount += 1
-    totalCount += 1
-print("Ratio of Easy over all on testing set: %0.2f"%((easyCount+0.0)/len(Y_test)))
-easyCount=0
-for i in xrange(len(y)):
-    if(y[i]=="Easy"):
-        easyCount += 1
-    totalCount += 1
-print("Ratio of Easy over all on training set: %0.2f"%((easyCount+0.0)/len(y)))
-print("Number of instances: %0.0f"%(totalCount))
+            # sound features are too many  , [x for x in xrange(51,84)]]
+features_domain=["speech","display_text", "relation", "visual_aesthetic"]
+            #, "sound"]
 
-scaler = preprocessing.MinMaxScaler()
-scaler.fit(X)
-x_norm=scaler.transform(X)
+for set_number in xrange(len(features)):
+    set = features[set_number]
+    n = len(set)
+    size = pow(2,n)
+    # Vars to select the best suited model
+    bestModel = None
+    bestName = "none"
+    bestMean = 0.0
+    bestSet = []
+    for ii in xrange(size):
+        subset = []
+        for jj in xrange(n):
+            if (ii & (1 << jj)) > 0:
+                subset.append(set[jj])
+        print subset
+        if (len(subset)>0):
+            X,y,X_test,Y_test= getDataSubSet(subset)
+            scaler = preprocessing.MinMaxScaler()
+            scaler.fit(X)
+            x_norm=scaler.transform(X)
 
-#initialize models
-forest= RandomForestClassifier(n_estimators=100, max_depth=20, random_state=111)
-gdBoost = GradientBoostingClassifier(random_state=111)
-mlp = MLPClassifier(solver='lbfgs', alpha=1e-5,hidden_layer_sizes=(10, 2), random_state=111)
-models=[forest,gdBoost,mlp]
-names= ["Random Forest", "Gradient Boosting", "MuliLayer Perceptrons"]
+            #initialize models
+            forest= RandomForestClassifier(n_estimators=100, max_depth=20, random_state=111)
+            gdBoost = GradientBoostingClassifier(random_state=111)
+            mlp = MLPClassifier(solver='lbfgs', alpha=1e-5,hidden_layer_sizes=(10, 2), random_state=111)
+            models=[forest,gdBoost,mlp]
+            names= ["Random Forest", "Gradient Boosting", "MuliLayer Perceptrons"]
 
 
-#Vars to select the best suited model
-bestModel = None
-bestName = "none"
-bestMean= 0.0
-x_best=[]
-scenario = "none"
 
-##Using all the features
-print("------------------------------------------")
-print("------All Features -----------------------")
-model,name,mean=manual_cross_validation(x_norm, y, models, names)
-if(mean>bestMean):
-    bestModel,bestName,bestMean=model,name,mean
-    x_best=x_norm
-    scenario = "all"
 
-##Removing features with low variance
-print("------------------------------------------")
-print("------Removing features with low variance -----------------------")
-sel = VarianceThreshold(threshold=(0.01))
-x_case = sel.fit_transform(x_norm)
-model,name,mean=manual_cross_validation(x_case, y, models, names)
-if(mean>bestMean):
-    bestModel,bestName,bestMean=model,name,mean
-    x_best = x_case
-    scenario = "variance"
+            ##Using all the features
+            model,name,mean=manual_cross_validation(x_norm, y, models, names, True)
+            if(mean>bestMean):
+                bestModel,bestName,bestMean=model,name,mean
+                bestSet = subset
 
-## Univariate feature selection
-print("------------------------------------------")
-print("------Univariate feature selection-----------------------")
-sel2=SelectKBest(chi2, k=2)
-x_case = sel2.fit_transform(x_norm, y)
 
-model,name,mean=manual_cross_validation(x_case, y, models, names)
-if(mean>bestMean):
-    bestModel,bestName,bestMean=model,name,mean
-    x_best = x_case
-    scenario = "univariate"
-
-##Recursive Elimination
-print("------------------------------------------")
-print("------Backwards Elimination-----------------------")
-
-selectorGB = RFECV(gdBoost, step=1, cv=3)
-selectorGB = selectorGB.fit(x_norm,y)
-joblib.dump(selectorGB, 'BEGrandientBoosting.joblib')
-print(" gb done")
-selectorForest = RFECV(forest, step=1, cv=3)
-selectorForest = selectorForest.fit(x_norm,y)
-joblib.dump(selectorForest, 'BERandomForest.joblib')
-print("forest be done")
-#selectorMLP = RFECV(mlp, step=1, cv=3)
-#selectorMLP = selectorMLP.fit(x_norm,y)
-#print(" mlp done")
-model,name,mean=manual_cross_validation(x_norm, y,[selectorForest,selectorGB], names)
-if(mean>bestMean):
-    bestModel,bestName,bestMean=model,name,mean
-    x_best = x_norm
-    scenario = "all"
-
-print("###########################################")
-print("The best model is: %s with and average accuracy of: %0.5f"%(bestName,bestMean))
-
-## Saving the best model
-joblib.dump(bestModel, "Best%s.joblib"%bestName)
-
-#train best suited model
-bestModel.fit(x_best,y)
-scaler.fit(X_test)
-x_test_norm=scaler.transform(X_test)
-if scenario == "variance":
-    x_test_norm = sel.transform(x_test_norm)
-elif scenario == "univariate":
-    x_test_norm = sel2.transform(x_test_norm)
-testScore = bestModel.score(x_test_norm,Y_test)
-y_predicted= bestModel.predict(x_test_norm)
-y_predicted2=[]
-y_test2=[]
-for k in xrange(len(y_predicted)):
-    if (y_predicted[k] == "Easy"):
-        y_predicted2.append(1)
-    else:
-        y_predicted2.append(0)
-    if (Y_test[k] == "Easy"):
-        y_test2.append(1)
-    else:
-        y_test2.append(0)
-
-f1=(m.f1_score(y_test2, y_predicted2))
-average_precision=(m.average_precision_score(y_test2, y_predicted2))
-recall=(m.recall_score(y_test2, y_predicted2))
-roc_auc=(m.roc_auc_score(y_test2, y_predicted2))
-
-print("Best suited model %s: TESTING SET" %(bestName))
-print("     Accuracy: %0.5f"%testScore)
-print("     F1: %0.5f"%f1)
-print("     Average Precision: %0.5f"%average_precision)
-print("     Recall: %0.5f"%recall)
-print("     ROC AUC: %0.5f"%roc_auc)
+    print("###################%s########################"%features_domain[set_number])
+    print("The best model is: %s with and average accuracy of: %0.5f"%(bestName,bestMean))
 

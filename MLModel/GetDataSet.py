@@ -68,7 +68,21 @@ def  getDataSet( minFeatureId=1, maxFeatureId =300):
 
 # Function that gets the dataset of evaluated videos
 # PARAMS: featuers is an array of ids of the feautres that will be used (inclusive)
-def getDataSet(minFeatureId=1, maxFeatureId=300):
+def getDataSubSet(features):
+
+    #construct the query in function of the selected features
+    query = "SELECT FV.video_id, name, value, qualification " \
+            "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID " \
+            "JOIN VIDEO_QUALIFICATION VQ ON FV.VIDEO_ID=VQ.VIDEO_ID " \
+            "WHERE QUALIFICATION_AMOUNT>2 AND"
+
+    for f in xrange(len(features)):
+        if f == 0:
+            query += "(FEATURE_ID=%0.0f" % features[0]
+        else:
+            query += " OR FEATURE_ID = %0.0f" % features[f]
+    query += ");"
+
 
     # The SQL database reference is initialized
     db = MySQLdb.connect(host="localhost",  # your host, usually localhost
@@ -88,11 +102,9 @@ def getDataSet(minFeatureId=1, maxFeatureId=300):
 
         videos[row[0]]["qualification"] = row[1]
 
+
     # This query gets the joint information about the videos and their features
-    cur.execute("SELECT FV.video_id, name, value, qualification " +
-                "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID " +
-                "JOIN VIDEO_QUALIFICATION VQ ON FV.VIDEO_ID=VQ.VIDEO_ID " +
-                "WHERE QUALIFICATION_AMOUNT>2 AND FEATURE_ID BETWEEN %0.0f and %0.0f;" % (minFeatureId, maxFeatureId))
+    cur.execute(query)
 
     # In this loop the features and their values are added to the video dictionary
     for row in cur.fetchall():

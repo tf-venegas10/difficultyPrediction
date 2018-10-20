@@ -13,8 +13,9 @@ Function that does the cross validation applying SMOTE for every model and choos
 @param y the target variable to be predicted
 @param models the models to be tested
 @param names the name of the models to be tested
+@param silent if silent is true no printing will be done
 '''
-def manual_cross_validation(x, y, models, names):
+def manual_cross_validation(x, y, models, names, silent = False):
     sm = SMOTE()
     kf = KFold(n_splits=10)
     bestMean = 0.0
@@ -23,9 +24,6 @@ def manual_cross_validation(x, y, models, names):
     for i in xrange(len(models)):
         # do cross_validation
         scores = []
-        '''
-        which is the meaning of fls?
-        '''
         f1s = []
         average_precisions = []
         recalls = []
@@ -61,12 +59,13 @@ def manual_cross_validation(x, y, models, names):
         average_precisions = np.array(average_precisions)
         recalls = np.array(recalls)
         roc_aucs = np.array(roc_aucs)
-        print("%s: " % names[i])
-        print("    Accuracy: %0.4f (+/- %0.4f)" % (score, scores.std() * 2))
-        print("    F1: %0.4f (+/- %0.4f)" % (f1s.mean(), f1s.std() * 2))
-        print("    Average Precision: %0.4f (+/- %0.4f)" % (average_precisions.mean(), average_precisions.std() * 2))
-        print("    Recall : %0.4f (+/- %0.4f)" % (recalls.mean(), recalls.std() * 2))
-        print("    ROC AUC: %0.4f (+/- %0.4f)" % (roc_aucs.mean(), roc_aucs.std() * 2))
+        if (not silent):
+            print("%s: " % names[i])
+            print("    Accuracy: %0.4f (+/- %0.4f)" % (score, scores.std() * 2))
+            print("    F1: %0.4f (+/- %0.4f)" % (f1s.mean(), f1s.std() * 2))
+            print("    Average Precision: %0.4f (+/- %0.4f)" % (average_precisions.mean(), average_precisions.std() * 2))
+            print("    Recall : %0.4f (+/- %0.4f)" % (recalls.mean(), recalls.std() * 2))
+            print("    ROC AUC: %0.4f (+/- %0.4f)" % (roc_aucs.mean(), roc_aucs.std() * 2))
 
         if score > bestMean:
             bestMean = score

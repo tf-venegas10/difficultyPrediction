@@ -12,6 +12,9 @@ from sklearn.externals import joblib
 from Validation import manual_cross_validation
 from sklearn import metrics as m
 
+#set that defines the different sets of features that will be used
+features = [{"init":1, "fin":6},]
+
 X,y,X_test,Y_test= getDataSet(1,300)
 ## Count number of 'easy' labeled instances and total instances
 # This is done to keep control of the correct distribution of the dataset and the parameters of the experiment.

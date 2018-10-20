@@ -6,25 +6,13 @@ import numpy as np
 from imblearn.over_sampling import SMOTE
 from sklearn import metrics as m
 
-def split_validtion(x,y,x_val,y_val, models, names):
-
-    bestMean= 0.0
-    bestModel = None
-    bestName = "none"
-    for i in xrange(len(models)):
-        # do cross_validation
-        models[i] = models[i].fit(x,y)
-        score= models[i].score(x_val,y_val)
-
-        #report results
-        print("%s: Accuracy: %0.4f " % (names[i],score))
-        if(score>bestMean):
-            bestMean = score
-            bestModel = models[i]
-            bestName = names[i]
-
-    return (bestModel,bestName, bestMean)
-
+'''
+Function that does the cross validation applying SMOTE for every model and chooses the best fitting model
+@param x the data to fit
+@param y the target variable to be predicted
+@param models the models to be tested
+@param names the name of the models to be tested
+'''
 def manual_cross_validation(x, y, models, names):
     sm = SMOTE()
     kf = KFold(n_splits=10)

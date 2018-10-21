@@ -204,7 +204,7 @@ def choose_model(x_norm, y, X_test, Y_test):
     return average_precision, bestModel
 
 
-X, y, X_test, Y_test = getDataSet(feature_amount)
+X, y, X_test, Y_test = getDataSet(0, feature_amount)
 ## Count number of 'easy' labeled instances and total instances
 # This is done to keep control of the correct distribution of the dataset and the parameters of the experiment.
 easyCount = 0

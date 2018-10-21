@@ -12,7 +12,8 @@ from sklearn.neural_network import MLPClassifier
 from GetDataSet import getDataSet
 from Validation import manual_cross_validation
 
-X, y, X_test, Y_test = getDataSet(100)
+X,y,X_test,Y_test= getDataSet(1,300)
+
 ## Count number of 'easy' labeled instances and total instances
 # This is done to keep control of the correct distribution of the dataset and the parameters of the experiment.
 easyCount = 0

@@ -3,9 +3,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 
-
 # Function that gets the dataset of evaluated videos
-def  getDataSet(maxFeatureId):
+def getDataSet(maxFeatureId):
     # The SQL database reference is initialized
     db = MySQLdb.connect(host="localhost",  # your host, usually localhost
                          user="root",  # your username
@@ -28,7 +27,7 @@ def  getDataSet(maxFeatureId):
     cur.execute("SELECT FV.video_id, name, value, qualification " +
                 "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID " +
                 "JOIN VIDEO_QUALIFICATION VQ ON FV.VIDEO_ID=VQ.VIDEO_ID " +
-                "WHERE QUALIFICATION_AMOUNT>2 AND FEATURE_ID<%0.0f;"%maxFeatureId)
+                "WHERE QUALIFICATION_AMOUNT>2 AND FEATURE_ID<%0.0f;" % maxFeatureId)
 
     # In this loop the features and their values are added to the video dictionary
     for row in cur.fetchall():

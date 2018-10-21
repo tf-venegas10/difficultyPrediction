@@ -12,7 +12,7 @@ from sklearn.feature_selection import RFECV
 from sklearn.externals import joblib
 from sklearn.metrics import recall_score
 
-X,Y,X_test,Y_test= getDataSet(1,300)
+X, Y, X_test, Y_test = getDataSet(1, 300)
 # Get the dataset from the database
 X, Y, X_test, Y_test = getDataSet()
 easyCount = 0
@@ -46,20 +46,18 @@ names = ["Random Forest", "Gradient Boosting", "MuliLayer Perceptrons"]
 # Vars to select the best suited model
 bestModel = None
 bestName = "none"
-bestMean= 0.0
-x_best=[]
+bestMean = 0.0
+x_best = []
 scenario = "none"
-
 
 # Using all the features
 print("------------------------------------------")
 print("------All Features -----------------------")
-model,name,mean=cross_validation(x_norm, y, models, names)
-if(mean>bestMean):
-    bestModel,bestName,bestMean=model,name,mean
-    x_best=x_norm
+model, name, mean = cross_validation(x_norm, y, models, names)
+if (mean > bestMean):
+    bestModel, bestName, bestMean = model, name, mean
+    x_best = x_norm
     scenario = "all"
-
 
 # Removing features with low variance
 print("------------------------------------------")
@@ -119,13 +117,12 @@ joblib.dump(bestModel, "Best%s.joblib" % bestName)
 # train best suited model
 bestModel.fit(x_best, y)
 scaler.fit(X_test)
-x_test_norm=scaler.transform(X_test)
+x_test_norm = scaler.transform(X_test)
 if scenario == "variance":
     x_test_norm = sel.transform(x_test_norm)
-testScore = bestModel.score(x_test_norm,Y_test)
+testScore = bestModel.score(x_test_norm, Y_test)
 recall = recall_score(Y_test, bestModel.predict(x_test_norm), average=None)
 
-print("Best suited model %s, Testing set Accuracy: %0.5f" %(bestName,testScore))
+print("Best suited model %s, Testing set Accuracy: %0.5f" % (bestName, testScore))
 print("Recall: ")
 print(recall)
-

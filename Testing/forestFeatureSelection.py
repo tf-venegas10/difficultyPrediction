@@ -24,7 +24,7 @@ for row in cur.fetchall():
 cur.execute("SELECT FV.video_id, name, value, qualification " +
             "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID " +
             "JOIN VIDEO_QUALIFICATION VQ ON FV.VIDEO_ID=VQ.VIDEO_ID " +
-            "WHERE QUALIFICATION_AMOUNT>2 AND FEATURE_ID<100;")
+            "WHERE QUALIFICATION_AMOUNT>2;")
 
 for row in cur.fetchall():
     videos[row[0]][row[1]] = row[2]
@@ -65,7 +65,7 @@ print(sortedList)
 
 x=[]
 y=[]
-csv= open("forestFeaturesSelectionResults.csv","w+")
+csv= open("forestFeaturesSelectionResultsAll.csv","w+")
 csv.write("Feature;Dispersion index\n")
 for i in xrange(len(sortedList)):
    x.append(sortedList[i][1])

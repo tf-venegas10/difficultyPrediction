@@ -28,7 +28,7 @@ pearsonPval={}
 cur.execute("SELECT FV.video_id, name, value, qualification "+
 "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID "+
 "JOIN VIDEO_QUALIFICATION VQ ON FV.VIDEO_ID=VQ.VIDEO_ID "+
- "WHERE QUALIFICATION_AMOUNT>2 ORDER BY VQ.VIDEO_ID;")
+ "WHERE QUALIFICATION_AMOUNT>2 AND FEATURE_ID<100 ORDER BY VQ.VIDEO_ID;")
 
 videoId=-1
 for row in cur.fetchall():
@@ -64,14 +64,26 @@ for key in features.keys():
 i=0
 csv= open("SpearmanPearsons.csv","w+")
 csv.write("Feature;Spearman;Pearson index\n")
+table="\\begin{center}\n" \
+      "\\begin{tabular}{||c c c||}\n" \
+      "\hline\n" \
+      "Feature &Spearman-Index &Pearson's-Index \\\\ [0.5ex] \n" \
+      "\hline \n"
+
+
 for key,value in sorted(spearman.iteritems(), key=lambda (k,v): (math.fabs(v),k)):
     i+=1
-    print(i)
+    #print(i)
 
     if key!="qualification":
-        print(key)
-        print("Spearman's index: "+ str(spearman[key])+" pValue: "+str(spearmanPval[key]))
-        print("Pearson's index: "+ str(pearson[key])+" pValue: "+str(pearsonPval[key]))
+        #print(key)
+        #print("Spearman's index: "+ str(spearman[key])+" pValue: "+str(spearmanPval[key]))
+        #print("Pearson's index: "+ str(pearson[key])+" pValue: "+str(pearsonPval[key]))
         csv.write(key+";"+str(spearman[key])+";"+str(pearson[key])+"\n")
+        table+="\hline\n"
+        table+=key.replace("_","-")+" & %0.4f & %0.4f \\\\ \n"%(spearman[key],pearson[key])
+
 
 csv.close()
+table+= "\end{tabular}\n \end{center}"
+print(table)

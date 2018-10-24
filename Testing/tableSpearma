@@ -1,0 +1,133 @@
+\begin{center}
+\begin{tabular}{||c c c||}
+\hline
+Feature &Spearman-Index &Pearson's-Index \\ [0.5ex]
+\hline
+\hline
+WORDS-PER-MINUTE-WHOLE & 0.0053 & 0.0023 \\
+\hline
+VIDEO-CHROMA-12 & -0.0104 & 0.0273 \\
+\hline
+VIDEO-MFCC-8 & -0.0149 & -0.0459 \\
+\hline
+VIDEO-CHROMA-4 & -0.0218 & 0.0210 \\
+\hline
+VIDEO-CHROMA-7 & 0.0223 & 0.0391 \\
+\hline
+VIDEO-CHROMA-5 & -0.0235 & -0.0350 \\
+\hline
+VIDEO-MFCC-12 & 0.0250 & 0.0776 \\
+\hline
+VIDEO-CHROMA-11 & 0.0278 & 0.0401 \\
+\hline
+UNCOMMON WORDS RATIO & -0.0378 & -0.0839 \\
+\hline
+VIDEO-MFCC-4 & 0.0386 & -0.0046 \\
+\hline
+VIDEO-CHROMA-3 & -0.0424 & -0.0774 \\
+\hline
+VIDEO-CHROMA-8 & 0.0450 & 0.0699 \\
+\hline
+VIDEO-PHRASES-COUNT & 0.0450 & -0.0432 \\
+\hline
+VIDEO-NOUN-PHRASES & 0.0454 & -0.0277 \\
+\hline
+VIDEO-CHROMA-STD & -0.0473 & -0.0721 \\
+\hline
+VIDEO-CHROMA-1 & -0.0491 & -0.1065 \\
+\hline
+VIDEO-MFCC-9 & 0.0505 & 0.0132 \\
+\hline
+VIDEO-AVERAGE-LIGHT-EXPOSURE & -0.0526 & -0.0436 \\
+\hline
+VIDEO-CHROMA-6 & -0.0554 & -0.0041 \\
+\hline
+VIDEO-ENERGY-ENTROPY & 0.0586 & 0.0508 \\
+\hline
+VIDEO-MFCC-13 & 0.0701 & 0.0832 \\
+\hline
+VIDEO-ENERGY & 0.0752 & 0.3511 \\
+\hline
+VIDEO-MFCC-6 & 0.0802 & 0.0666 \\
+\hline
+FLESCH-READING-EASE & -0.0821 & -0.0666 \\
+\hline
+VIDEO-ASPECT-RATIO & 0.0990 & 0.1010 \\
+\hline
+VIDEO-SIZE & 0.0990 & 0.1010 \\
+\hline
+VIDEO-WORDS-COUNT & 0.0992 & -0.0288 \\
+\hline
+WORDS-PER-MINUTE-WHOLE-VIDEO & -0.0997 & -0.1163 \\
+\hline
+SPEECH-DISPLAY-WORDS-RATIO & -0.1014 & -0.1015 \\
+\hline
+VIDEO-MFCC-3 & 0.1043 & 0.0645 \\
+\hline
+VIDEO-SPECTRAL-FLUX & 0.1112 & 0.1208 \\
+\hline
+VIDEO-MFCC-10 & 0.1115 & 0.1834 \\
+\hline
+VIDEO-CHROMA-10 & 0.1180 & 0.1938 \\
+\hline
+VIDEO-MFCC-2 & 0.1234 & 0.1077 \\
+\hline
+VIDEO-CHROMA-9 & -0.1243 & -0.0222 \\
+\hline
+VIDEO-CHROMA-2 & -0.1250 & -0.1087 \\
+\hline
+WORDS-PER-MINUTE & -0.1345 & -0.1093 \\
+\hline
+VIDEO-SPECTRAL-ENTROPY & -0.1353 & -0.1484 \\
+\hline
+EASY-VIDEO-READ & -0.1366 & -0.1071 \\
+\hline
+VIDEO-AVERAGE-SATURATION & -0.1374 & -0.0104 \\
+\hline
+AUTOMATED-VIDEO-READABILITY-INDEX & 0.1393 & 0.0786 \\
+\hline
+VIDEO-DOMINANT-COLOR & 0.1469 & -0.0066 \\
+\hline
+VIDEO-SPECTRAL-ROLLOFF & -0.1548 & -0.1409 \\
+\hline
+VIDEO-MFCC-11 & -0.1593 & -0.1471 \\
+\hline
+VIDEO-DIFFICULT-WORDS & 0.1611 & 0.0457 \\
+\hline
+FLESCH-KINCAID-VIDEO-GRADE & 0.1616 & 0.0953 \\
+\hline
+FLESCH-KINCAID-GRADE & 0.1625 & 0.1652 \\
+\hline
+VIDEO-ZCR & -0.1667 & -0.1341 \\
+\hline
+VIDEO-MFCC-7 & 0.1700 & 0.1716 \\
+\hline
+AUTOMATED-READABILITY-INDEX & 0.1748 & 0.1755 \\
+\hline
+VIDEO-MFCC-5 & 0.1869 & 0.0318 \\
+\hline
+PHRASES-AMOUNT & 0.1880 & 0.1350 \\
+\hline
+VIDEO-MFCC-1 & 0.1882 & 0.2176 \\
+\hline
+VIDEO-AVERAGE-COLORFULNESS & -0.1981 & -0.1442 \\
+\hline
+VIDEO-AVERAGE-BRIGHTNESS & 0.2280 & 0.1132 \\
+\hline
+UNCOMMON WORDS AMOUNT & 0.2739 & 0.2378 \\
+\hline
+VIDEO-AVERAGE-HUE & -0.2882 & -0.2397 \\
+\hline
+VIDEO-SPECTRAL-CENTROID & -0.2899 & -0.2777 \\
+\hline
+WORD-AMOUNT & 0.2939 & 0.2408 \\
+\hline
+VIDEO-SPECTRAL-SPREAD & -0.3094 & -0.2736 \\
+\hline
+VIDEO-DURATION & 0.3166 & 0.2049 \\
+\hline
+DIFFICULT-WORDS-AMOUNT & 0.3364 & 0.2764 \\
+\hline
+NOUN-PHRASES-AMOUNT & 0.3378 & 0.2977 \\
+\end{tabular}
+ \end{center}

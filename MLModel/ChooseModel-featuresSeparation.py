@@ -59,4 +59,6 @@ for set_number in xrange(len(features)):
 
     print("###################%s########################"%features_domain[set_number])
     print("The best model is: %s with and average accuracy of: %0.5f"%(bestName,bestMean))
-
+    print("And with the set of features:")
+    print (subset)
+    print("###########")

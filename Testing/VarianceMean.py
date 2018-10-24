@@ -23,7 +23,7 @@ pearsonPval={}
 cur.execute("SELECT FV.video_id, name, value, qualification "+
 "FROM FEATURES F JOIN FEATURES_PER_VIDEO FV ON F.ID=FV.FEATURE_ID "+
 "JOIN VIDEO_QUALIFICATION VQ ON FV.VIDEO_ID=VQ.VIDEO_ID "+
- "WHERE QUALIFICATION_AMOUNT>2 AND FEATURE_ID<100 ORDER BY VQ.VIDEO_ID")
+ "WHERE QUALIFICATION_AMOUNT>2  ORDER BY VQ.VIDEO_ID")
 
 videoId=-1
 for row in cur.fetchall():
@@ -60,7 +60,7 @@ for i in xrange(len(values)):
     means.append(values[i]["mean"])
 width = 1/1.5
 
-csv= open("VarianceDispersion.csv","w+")
+csv= open("VarianceDispersionAll.csv","w+")
 csv.write("Feature;Variance; Mean; Dispersiono \n")
 for i in xrange(len(keys)):
    csv.write(str(keys[i])+";"+str(vars[i])+";"+str(means[i])+";"+str(disps[i])+"\n")

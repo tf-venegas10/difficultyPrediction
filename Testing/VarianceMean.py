@@ -45,6 +45,7 @@ for key in features.keys():
 
 values= sorted(values, key=lambda k: k['disp'])
 vars=[]
+disps=[]
 means=[]
 keys=[]
 show=False
@@ -54,10 +55,18 @@ for i in xrange(len(values)):
     if show:
         print(values[i])
     keys.append(values[i]["key"])
-    vars.append(values[i]["disp"])
+    vars.append(values[i]["var"])
+    disps.append(values[i]["disp"])
     means.append(values[i]["mean"])
 width = 1/1.5
-plt.bar(keys, vars,width, color="blue")
-plt.show()
+
+csv= open("VarianceDispersion.csv","w+")
+csv.write("Feature;Variance; Mean; Dispersiono \n")
+for i in xrange(len(keys)):
+   csv.write(str(keys[i])+";"+str(vars[i])+";"+str(means[i])+";"+str(disps[i])+"\n")
+
+csv.close()
+#plt.bar(keys, vars,width, color="blue")
+#plt.show()
 
 

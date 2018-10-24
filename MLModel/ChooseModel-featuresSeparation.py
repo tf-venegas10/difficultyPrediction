@@ -35,27 +35,30 @@ for set_number in xrange(len(features)):
                 subset.append(set[jj])
         print subset
         if (len(subset)>0):
-            X,y,X_test,Y_test= getDataSubSet(subset)
-            scaler = preprocessing.MinMaxScaler()
-            scaler.fit(X)
-            x_norm=scaler.transform(X)
+            try:
 
-            #initialize models
-            forest= RandomForestClassifier(n_estimators=100, max_depth=20, random_state=111)
-            gdBoost = GradientBoostingClassifier(random_state=111)
-            mlp = MLPClassifier(solver='lbfgs', alpha=1e-5,hidden_layer_sizes=(10, 2), random_state=111)
-            models=[forest,gdBoost,mlp]
-            names= ["Random Forest", "Gradient Boosting", "MuliLayer Perceptrons"]
+                X,y,X_test,Y_test= getDataSubSet(subset)
+                scaler = preprocessing.MinMaxScaler()
+                scaler.fit(X)
+                x_norm=scaler.transform(X)
+
+                #initialize models
+                forest= RandomForestClassifier(n_estimators=100, max_depth=20, random_state=111)
+                gdBoost = GradientBoostingClassifier(random_state=111)
+                mlp = MLPClassifier(solver='lbfgs', alpha=1e-5,hidden_layer_sizes=(10, 2), random_state=111)
+                models=[forest,gdBoost,mlp]
+                names= ["Random Forest", "Gradient Boosting", "MuliLayer Perceptrons"]
 
 
 
 
-            ##Using all the features
-            model,name,mean=manual_cross_validation(x_norm, y, models, names, True)
-            if(mean>bestMean):
-                bestModel,bestName,bestMean=model,name,mean
-                bestSet = subset
-
+                ##Using all the features
+                model,name,mean=manual_cross_validation(x_norm, y, models, names, True)
+                if(mean>bestMean):
+                    bestModel,bestName,bestMean=model,name,mean
+                    bestSet = subset
+            except:
+                print ("Exception raised")
 
     print("###################%s########################"%features_domain[set_number])
     print("The best model is: %s with and average accuracy of: %0.5f"%(bestName,bestMean))

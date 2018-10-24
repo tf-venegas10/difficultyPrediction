@@ -1,30 +1,21 @@
+import numpy as np
 from sklearn import metrics as m
 from sklearn import preprocessing
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.externals import joblib
-from sklearn.feature_selection import RFECV
-from sklearn.feature_selection import SelectKBest
-from sklearn.feature_selection import VarianceThreshold
-from sklearn.feature_selection import chi2
 from sklearn.neural_network import MLPClassifier
+import copy
 
 from GetDataSet import getDataSet
 from Validation import manual_cross_validation
 
-feature_amount = 10
+feature_lower_bound = 0
+feature_upper_bound = 100
+feature_amount = 64
 
 
 def tree_selection_heuristic(x_norm, y, X_test, Y_test):
-    id = x_norm.keys()[0]
-    # A feature hash is created to transform nominal features into numerical identifiers
-    feature_hash = {}
-    i = 1
-    # The hash for every feature is created
-    for f in x_norm[id]:
-        feature_hash[i] = f
-        i += 1
-
     # The feature set that is going to be evaluated
     feature_set = [0]
     max_accuracy = 0.0
@@ -32,14 +23,14 @@ def tree_selection_heuristic(x_norm, y, X_test, Y_test):
     best_model = None
 
     # For every set of 1 feature the recursive search is applied
-    for i in range(1, len(feature_amount) + 1, 1):
+    for i in xrange(feature_amount):
         feature_set.pop()
         feature_set.append(i)
-        new_x_norm = build_dataset(x_norm, feature_set, feature_hash)
-        new_x_test = build_dataset(X_test, feature_set, feature_hash)
+        new_x_norm = build_dataset(x_norm, feature_set)
+        new_x_test = build_dataset(X_test, feature_set)
         calc_accuracy, calc_best_model = choose_model(new_x_norm, y, new_x_test, Y_test)
         calc_accuracy, calc_best_set, calc_best_model = recursive_tree_exploration(x_norm, y, X_test, Y_test,
-                                                                                   feature_set, feature_hash,
+                                                                                   feature_set,
                                                                                    calc_accuracy, calc_best_model)
         if calc_accuracy > max_accuracy:
             max_accuracy = calc_accuracy
@@ -57,39 +48,47 @@ def tree_selection_heuristic(x_norm, y, X_test, Y_test):
     return best_model
 
 
-def recursive_tree_exploration(x_norm, y, X_test, Y_test, feature_set, feature_hash, past_accuracy, past_model):
+def recursive_tree_exploration(x_norm, y, X_test, Y_test, feature_set, past_accuracy, past_model):
     last_added = feature_set[len(feature_set) - 1]
     last_added += 1
-    new_feature_set = feature_set.append(0)
+    new_feature_set = copy.copy(feature_set)
+    new_feature_set.append(0)
 
     max_accuracy = past_accuracy
     best_set = feature_set
     best_model = past_model
-    for i in range(last_added, len(feature_amount), 1):
+    for iter in range(last_added, feature_amount, 1):
         new_feature_set.pop()
-        new_feature_set.append(i)
-        new_x_norm = build_dataset(x_norm, new_feature_set, feature_hash)
-        new_x_test = build_dataset(X_test, new_feature_set, feature_hash)
+        new_feature_set.append(iter)
+        new_x_norm = build_dataset(x_norm, new_feature_set)
+        new_x_test = build_dataset(X_test, new_feature_set)
         calc_accuracy, calc_best_model = choose_model(new_x_norm, y, new_x_test, Y_test)
         if calc_accuracy > max_accuracy:
+            max_accuracy = calc_accuracy
+            best_set = new_feature_set
+            best_model = calc_best_model
             calc_accuracy, calc_best_set, calc_best_model = recursive_tree_exploration(x_norm, y, X_test, Y_test,
-                                                                                       new_feature_set, feature_hash,
-                                                                                       calc_accuracy, calc_best_model)
+                                                                                       new_feature_set,
+                                                                                       max_accuracy, calc_best_model)
             if calc_accuracy > max_accuracy:
                 max_accuracy = calc_accuracy
                 best_set = calc_best_set
                 best_model = calc_best_model
 
+    print best_set
+    print "BEST SET ACCURACY: "+str(max_accuracy)
+    print "BEST SET MODEL: " + str(best_model)
     return max_accuracy, best_set, best_model
 
 
-def build_dataset(x_norm, range, hash):
-    x = {}
-    for id in x_norm.keys:
+def build_dataset(x_norm, range):
+    x = []
+    for vid in x_norm:
+        feat_vals = []
         for cod in range:
-            x[id] = {}
-            x[id][hash[cod]] = x_norm[id][hash[cod]]
-    return x
+            feat_vals.append(vid[cod])
+        x.append(feat_vals)
+    return np.asmatrix(x)
 
 
 def choose_model(x_norm, y, X_test, Y_test):
@@ -108,103 +107,29 @@ def choose_model(x_norm, y, X_test, Y_test):
     scenario = "none"
 
     # Using all the features
-    print("------------------------------------------")
-    print("------All Features -----------------------")
-    model, name, mean = manual_cross_validation(x_norm, y, models, names)
+    # print("------------------------------------------")
+    # print("------All Features -----------------------")
+    model, name, mean = manual_cross_validation(x_norm, y, models, names, silent=True)
     if mean > bestMean:
         bestModel, bestName, bestMean = model, name, mean
-        x_best = x_norm
-        scenario = "all"
 
-    # Removing features with low variance
-    print("------------------------------------------")
-    print("------Removing features with low variance -----------------------")
-    sel = VarianceThreshold(threshold=(0.01))
-    x_case = sel.fit_transform(x_norm)
-    model, name, mean = manual_cross_validation(x_case, y, models, names)
-    if mean > bestMean:
-        bestModel, bestName, bestMean = model, name, mean
-        x_best = x_case
-        scenario = "variance"
+    # print("###########################################")
+    # print("The best model is: %s with and average accuracy of: %0.5f" % (bestName, bestMean))
 
-    # Univariate feature selection
-    print("------------------------------------------")
-    print("------Univariate feature selection-----------------------")
-    sel2 = SelectKBest(chi2, k=2)
-    x_case = sel2.fit_transform(x_norm, y)
-
-    model, name, mean = manual_cross_validation(x_case, y, models, names)
-    if mean > bestMean:
-        bestModel, bestName, bestMean = model, name, mean
-        x_best = x_case
-        scenario = "univariate"
-
-    # Recursive Elimination
-    print("------------------------------------------")
-    print("------Backwards Elimination-----------------------")
-
-    selectorGB = RFECV(gdBoost, step=1, cv=3)
-    selectorGB = selectorGB.fit(x_norm, y)
-    joblib.dump(selectorGB, 'BEGrandientBoosting.joblib')
-    print(" gb done")
-    selectorForest = RFECV(forest, step=1, cv=3)
-    selectorForest = selectorForest.fit(x_norm, y)
-    joblib.dump(selectorForest, 'BERandomForest.joblib')
-    print("forest be done")
-    # selectorMLP = RFECV(mlp, step=1, cv=3)
-    # selectorMLP = selectorMLP.fit(x_norm,y)
-    # print(" mlp done")
-    model, name, mean = manual_cross_validation(x_norm, y, [selectorForest, selectorGB], names)
-    if mean > bestMean:
-        bestModel, bestName, bestMean = model, name, mean
-        x_best = x_norm
-        scenario = "all"
-
-    print("###########################################")
-    print("The best model is: %s with and average accuracy of: %0.5f" % (bestName, bestMean))
-
-    ## Saving the best model
+    # Saving the best model
     joblib.dump(bestModel, "Best%s.joblib" % bestName)
 
-    # train best suited model
-    bestModel.fit(x_best, y)
-    scaler = preprocessing.MinMaxScaler()
-    scaler.fit(X_test)
-    x_test_norm = scaler.transform(X_test)
-    if scenario == "variance":
-        x_test_norm = sel.transform(x_test_norm)
-    elif scenario == "univariate":
-        x_test_norm = sel2.transform(x_test_norm)
-    testScore = bestModel.score(x_test_norm, Y_test)
-    y_predicted = bestModel.predict(x_test_norm)
-    y_predicted2 = []
-    y_test2 = []
-    for k in xrange(len(y_predicted)):
-        if (y_predicted[k] == "Easy"):
-            y_predicted2.append(1)
-        else:
-            y_predicted2.append(0)
-        if (Y_test[k] == "Easy"):
-            y_test2.append(1)
-        else:
-            y_test2.append(0)
+    # print("Best suited model %s: TESTING SET" % (bestName))
+    # print("     Accuracy: %0.5f" % testScore)
+    # print("     F1: %0.5f" % f1)
+    # print("     Average Precision: %0.5f" % average_precision)
+    # print("     Recall: %0.5f" % recall)
+    # print("     ROC AUC: %0.5f" % roc_auc)
 
-    f1 = (m.f1_score(y_test2, y_predicted2))
-    average_precision = (m.average_precision_score(y_test2, y_predicted2))
-    recall = (m.recall_score(y_test2, y_predicted2))
-    roc_auc = (m.roc_auc_score(y_test2, y_predicted2))
-
-    print("Best suited model %s: TESTING SET" % (bestName))
-    print("     Accuracy: %0.5f" % testScore)
-    print("     F1: %0.5f" % f1)
-    print("     Average Precision: %0.5f" % average_precision)
-    print("     Recall: %0.5f" % recall)
-    print("     ROC AUC: %0.5f" % roc_auc)
-
-    return average_precision, bestModel
+    return bestMean, bestName
 
 
-X, y, X_test, Y_test = getDataSet(0, feature_amount)
+X, y, X_test, Y_test = getDataSet(feature_lower_bound, feature_upper_bound)
 ## Count number of 'easy' labeled instances and total instances
 # This is done to keep control of the correct distribution of the dataset and the parameters of the experiment.
 easyCount = 0
@@ -225,5 +150,7 @@ print("Number of instances: %0.0f" % (totalCount))
 scaler = preprocessing.MinMaxScaler()
 scaler.fit(X)
 x_norm = scaler.transform(X)
+feature_amount = len(x_norm[0])
+print "FEATURE AMOUNT: "+str(feature_amount)
 
 tree_selection_heuristic(x_norm, y, X_test, Y_test)

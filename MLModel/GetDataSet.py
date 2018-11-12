@@ -48,8 +48,10 @@ def getDataSet(minFeatureId=1, maxFeatureId=300):
                 if feature != "qualification" and feature != "VIDEOID":
                     features.append(feature)
         theseFeatures = []
-
+        featID = 1
         for feature in features:
+            print str(featID)+"- "+feature
+            featID += 1
             theseFeatures.append(videos[key][feature])
         xFeatures.append(np.array(theseFeatures))
         yScore.append(videos[key]["qualification"])

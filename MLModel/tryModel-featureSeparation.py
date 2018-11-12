@@ -13,8 +13,8 @@ from Validation import manual_cross_validation
 from sklearn import metrics as m
 
 #set that defines the different sets of features that will be used
-features = [1,2,3,4,5,6,7,44]+[x for x in xrange(8,15)]+[31,32,33,34,45,50]+[c for c in xrange(35,44)]+[56,57,58,60,65,67,68,84]
-
+#features = [1,2,3,4,5,6,7,44]+[x for x in xrange(8,15)]+[31,32,33,34,45,50]+[c for c in xrange(35,44)]+[56,57,58,60,65,67,68,84]
+features =[2, 37, 43, 45, 56, 64, 65, 70, 71, 74, 77, 78]
 print features
 # Vars to select the best suited model
 bestModel = None

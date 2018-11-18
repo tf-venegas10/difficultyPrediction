@@ -12,20 +12,20 @@ from sklearn.neural_network import MLPClassifier
 from GetDataSet import getDataSet
 from Validation import manual_cross_validation
 
-X,y,X_test,Y_test= getDataSet(1,300)
+X, y, X_test, Y_test = getDataSet(1, 300)
 
 ## Count number of 'easy' labeled instances and total instances
 # This is done to keep control of the correct distribution of the dataset and the parameters of the experiment.
 easyCount = 0
 totalCount = 0
 for i in xrange(len(Y_test)):
-    if (Y_test[i] == "Easy"):
+    if Y_test[i] == "Easy":
         easyCount += 1
     totalCount += 1
 print("Ratio of Easy over all on testing set: %0.2f" % ((easyCount + 0.0) / len(Y_test)))
 easyCount = 0
 for i in xrange(len(y)):
-    if (y[i] == "Easy"):
+    if y[i] == "Easy":
         easyCount += 1
     totalCount += 1
 print("Ratio of Easy over all on training set: %0.2f" % ((easyCount + 0.0) / len(y)))

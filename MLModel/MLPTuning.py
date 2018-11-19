@@ -8,10 +8,10 @@ from sklearn.feature_selection import VarianceThreshold
 from sklearn.feature_selection import chi2
 from sklearn.neural_network import MLPClassifier
 
-from GetDataSet import getDataSet
+from GetDataSet import getDataSubSet
 from Validation import manual_cross_validation
 
-X, y, X_test, Y_test = getDataSet(1, 300)
+X, y, X_test, Y_test = getDataSubSet([3, 5, 34, 35, 38, 39, 40, 42, 51, 52, 56, 60, 62, 99])
 
 ## Count number of 'easy' labeled instances and total instances
 # This is done to keep control of the correct distribution of the dataset and the parameters of the experiment.
@@ -73,50 +73,50 @@ while n_layers <= 100:
             scenario = "all"
 
         # Removing features with low variance
-        print("------------------------------------------")
-        print("------Removing features with low variance -----------------------")
-        sel = VarianceThreshold(threshold=(0.01))
-        x_case = sel.fit_transform(x_norm)
-        model, name, mean = manual_cross_validation(x_case, y, models, names)
-        if 'lowVariance' not in results.keys():
-            results['lowVariance'] = {
-                'mean': [mean],
-                'layers': [n_layers],
-                'nodes': [n_nodes]
-            }
-        else:
-            results['lowVariance']['mean'].append(mean)
-            results['lowVariance']['layers'].append(n_layers)
-            results['lowVariance']['nodes'].append(n_nodes)
-
-        if mean > bestMean:
-            bestModel, bestName, bestMean = model, name, mean
-            x_best = x_case
-            scenario = "variance"
-
-        # Univariate feature selection
-        print("------------------------------------------")
-        print("------Univariate feature selection-----------------------")
-        sel2 = SelectKBest(chi2, k=2)
-        x_case = sel2.fit_transform(x_norm, y)
-
-        model, name, mean = manual_cross_validation(x_case, y, models, names)
-
-        if 'univariate' not in results.keys():
-            results['univariate'] = {
-                'mean': [mean],
-                'layers': [n_layers],
-                'nodes': [n_nodes]
-            }
-        else:
-            results['univariate']['mean'].append(mean)
-            results['univariate']['layers'].append(n_layers)
-            results['univariate']['nodes'].append(n_nodes)
-
-        if mean > bestMean:
-            bestModel, bestName, bestMean = model, name, mean
-            x_best = x_case
-            scenario = "univariate"
+        # print("------------------------------------------")
+        # print("------Removing features with low variance -----------------------")
+        # sel = VarianceThreshold(threshold=(0.01))
+        # x_case = sel.fit_transform(x_norm)
+        # model, name, mean = manual_cross_validation(x_case, y, models, names)
+        # if 'lowVariance' not in results.keys():
+        #     results['lowVariance'] = {
+        #         'mean': [mean],
+        #         'layers': [n_layers],
+        #         'nodes': [n_nodes]
+        #     }
+        # else:
+        #     results['lowVariance']['mean'].append(mean)
+        #     results['lowVariance']['layers'].append(n_layers)
+        #     results['lowVariance']['nodes'].append(n_nodes)
+        #
+        # if mean > bestMean:
+        #     bestModel, bestName, bestMean = model, name, mean
+        #     x_best = x_case
+        #     scenario = "variance"
+        #
+        # # Univariate feature selection
+        # print("------------------------------------------")
+        # print("------Univariate feature selection-----------------------")
+        # sel2 = SelectKBest(chi2, k=2)
+        # x_case = sel2.fit_transform(x_norm, y)
+        #
+        # model, name, mean = manual_cross_validation(x_case, y, models, names)
+        #
+        # if 'univariate' not in results.keys():
+        #     results['univariate'] = {
+        #         'mean': [mean],
+        #         'layers': [n_layers],
+        #         'nodes': [n_nodes]
+        #     }
+        # else:
+        #     results['univariate']['mean'].append(mean)
+        #     results['univariate']['layers'].append(n_layers)
+        #     results['univariate']['nodes'].append(n_nodes)
+        #
+        # if mean > bestMean:
+        #     bestModel, bestName, bestMean = model, name, mean
+        #     x_best = x_case
+        #     scenario = "univariate"
 
         print("###########################################")
         print("The best model is: %s with and average accuracy of: %0.5f" % (bestName, bestMean))

@@ -66,7 +66,7 @@ for i in xrange(len(keys)):
    csv.write(str(keys[i])+";"+str(vars[i])+";"+str(means[i])+";"+str(disps[i])+"\n")
 
 csv.close()
-#plt.bar(keys, vars,width, color="blue")
-#plt.show()
+plt.bar(keys, vars,width, color="blue")
+plt.show()
 
 

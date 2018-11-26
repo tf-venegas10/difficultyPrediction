@@ -27,6 +27,7 @@ def compute_weighted_kappa(dict):
 
 
 # Function that returns the class to which the given nominal class belongs
+# It receives the amount of classes to group the data and the nominal class to group
 def group_difficulty(nominal, classes):
     difs = ['VeryEasy', 'Easy', 'Intermediate', 'Difficult', 'VeryDifficult']
     index = difs.index(nominal)
@@ -183,5 +184,5 @@ if __name__=="__main__":
 
     print json.dumps(kappas, sort_keys=True, indent=4)
     randolph, fleiss = compute_weighted_kappa(kappas)
-    print 'OVERALL FLEISS KAPPA: ' + str(randolph)
-    print 'OVERALL RANDOLPH KAPPA: ' + str(fleiss)
+    print 'OVERALL FLEISS KAPPA: ' + str(fleiss)
+    print 'OVERALL RANDOLPH KAPPA: ' + str(randolph)

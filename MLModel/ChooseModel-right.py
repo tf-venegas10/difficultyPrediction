@@ -8,6 +8,8 @@ from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import VarianceThreshold
 from sklearn.feature_selection import chi2
 from sklearn.neural_network import MLPClassifier
+from imblearn.over_sampling import SMOTE
+
 
 from GetDataSet import getDataSet
 from Validation import manual_cross_validation
@@ -106,7 +108,12 @@ print("###########################################")
 print("The best model is: %s with and average accuracy of: %0.5f" % (bestName, bestMean))
 
 ## Saving the best model
-joblib.dump(bestModel, "Best%s.joblib" % bestName)
+#joblib.dump(bestModel, "Best%s.joblib" % bestName)
+
+#apply smote to training set
+sm = SMOTE()
+
+x_best,y=sm.fit(x_best,y)
 
 # train best suited model
 bestModel.fit(x_best, y)

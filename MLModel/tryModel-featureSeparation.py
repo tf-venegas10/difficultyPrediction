@@ -1,20 +1,15 @@
 
-from sklearn import preprocessing
-from GetDataSet import getDataSubSet
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.neural_network import MLPClassifier
-from sklearn.feature_selection import VarianceThreshold
-from sklearn.feature_selection import SelectKBest
-from sklearn.feature_selection import chi2
-from sklearn.feature_selection import RFECV
-from sklearn.externals import joblib
-from Validation import manual_cross_validation
 from sklearn import metrics as m
+from sklearn import preprocessing
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from imblearn.over_sampling import SMOTE
+
+from GetDataSet import getDataSubSet
 
 #set that defines the different sets of features that will be used
 #features = [1,2,3,4,5,6,7,44]+[x for x in xrange(8,15)]+[31,32,33,34,45,50]+[c for c in xrange(35,44)]+[56,57,58,60,65,67,68,84]
-features =[3, 5, 34, 35, 38, 39, 40, 42, 51, 52, 56, 60, 62, 99]
+#features =[3, 5, 34, 35, 38, 39, 40, 42, 51, 52, 56, 60, 62, 99]
+features = [x for x in range(100,300)]
 print features
 # Vars to select the best suited model
 bestModel = None
@@ -28,8 +23,8 @@ scaler.fit(X)
 x_norm=scaler.transform(X)
 
 #initialize models
-forest= RandomForestClassifier(n_estimators=9100, max_depth=300, random_state=111)
-# gdBoost = GradientBoostingClassifier(random_state=111)
+#forest= RandomForestClassifier(n_estimators=9100, max_depth=300, random_state=111)
+gdBoost = GradientBoostingClassifier(random_state=111)
 # mlp = MLPClassifier(solver='lbfgs', alpha=1e-5,hidden_layer_sizes=(10, 2), random_state=111)
 # models=[forest,gdBoost,mlp]
 # names= ["Random Forest", "Gradient Boosting", "MuliLayer Perceptrons"]
@@ -42,17 +37,25 @@ forest= RandomForestClassifier(n_estimators=9100, max_depth=300, random_state=11
 #     bestModel,bestName,bestMean=model,name,mean
 #     bestSet = features
 #
-forest.fit(x_norm,y)
+
+#apply smote to training set
+sm = SMOTE()
+x_norm,y = sm.fit_sample(x_norm,y)
+
+gdBoost.fit(x_norm,y)
 print("###########################################")
 print("The best model is: %s with and average accuracy of: %0.5f"%(bestName,bestMean))
 
 print("###########")
 # train best suited model
 #bestModel.fit(x_norm, y)
+
+
+
 scaler.fit(X_test)
 x_test_norm = scaler.transform(X_test)
-testScore = forest.score(x_test_norm, Y_test)
-y_predicted = forest.predict(x_test_norm)
+testScore = gdBoost.score(x_test_norm, Y_test)
+y_predicted = gdBoost.predict(x_test_norm)
 y_predicted2 = []
 y_test2 = []
 for k in xrange(len(y_predicted)):

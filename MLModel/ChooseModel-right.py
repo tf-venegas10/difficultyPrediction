@@ -1,20 +1,17 @@
+from imblearn.over_sampling import SMOTE
 from sklearn import metrics as m
 from sklearn import preprocessing
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.externals import joblib
 from sklearn.feature_selection import RFECV
-from sklearn.feature_selection import SelectKBest
 from sklearn.feature_selection import VarianceThreshold
-from sklearn.feature_selection import chi2
 from sklearn.neural_network import MLPClassifier
-from imblearn.over_sampling import SMOTE
-
 
 from GetDataSet import getDataSet
 from Validation import manual_cross_validation
 
-X, y, X_test, Y_test = getDataSet(1, 99)
+X, y, X_test, Y_test = getDataSet(100, 300)
 
 ## Count number of 'easy' labeled instances and total instances
 # This is done to keep control of the correct distribution of the dataset and the parameters of the experiment.
@@ -102,7 +99,7 @@ print("The best model is: %s with and average accuracy of: %0.5f" % (bestName, b
 #apply smote to training set
 sm = SMOTE()
 
-x_best,y=sm.fit(x_best,y)
+x_best,y=sm.fit_sample(x_best,y)
 
 # train best suited model
 bestModel.fit(x_best, y)
